@@ -4,17 +4,14 @@ class HollowCircle extends CustomPainter {
 
   final Color color;
   final double strokeWidth;
-  final double radius;
 
   Paint _paint;
 
   HollowCircle({
     @required this.color,
-    @required this.strokeWidth,
-    @required this.radius
+    @required this.strokeWidth
   })  : assert(color != null),
-        assert(strokeWidth != null),
-        assert(radius != null) {
+        assert(strokeWidth != null) {
     _paint = Paint()
       ..color = this.color
       ..strokeWidth = this.strokeWidth
@@ -23,7 +20,8 @@ class HollowCircle extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    canvas.drawCircle(Offset(0.0, 0.0), this.radius, _paint);
+    assert(size.height == size.width); // Child has to be square
+    canvas.drawCircle(Offset(size.width / 2, size.height / 2), size.height / 2, _paint);
   }
 
   @override
