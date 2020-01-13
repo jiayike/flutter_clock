@@ -17,18 +17,24 @@ class FerrisSupport extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    canvas.translate(-size.width / 2, 0);
-    canvas.drawPath(getTrianglePath(size.width, size.height), _paint);
+    canvas.drawPath(getFoundationPath(size.width, size.height), _paint);
   }
 
-  Path getTrianglePath(double x, double y) {
+  Path getFoundationPath(double x, double y) {
+    var topLeftCutoff = {
+      x: x * 1/4,
+      y: y * 1/2
+    };
+    var topRightCutoff = {
+      x: x * 3/4,
+      y: y * 1/2
+    };
+
     return Path()
       ..moveTo(0, y)
       ..lineTo(x, y)
-      ..lineTo(x * 3/4, y * 1/8)
-      ..lineTo(x / 2, 0)
-      ..quadraticBezierTo(x / 2, 0, x * 1/4, y * 1/8)
-      ..lineTo(x * 1/4, y * 1/8)
+      ..lineTo(topRightCutoff[x], topRightCutoff[y])
+      ..quadraticBezierTo(x / 2, y / 2.5, topLeftCutoff[x], topLeftCutoff[y])
       ..lineTo(0, y);
   }
 
