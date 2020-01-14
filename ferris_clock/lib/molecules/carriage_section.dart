@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
 import '../atoms/carriage_support.dart';
-// import '../atoms/carriage.dart';
+import '../atoms/carriage.dart';
 
 class CarriageSection extends StatelessWidget {
 
-  final double size;
+  final double wheelSize;
   final Color color;
 
   CarriageSection({
-    @required this.size,
+    @required this.wheelSize,
     @required this.color,
-  })  : assert(size != null),
+  })  : assert(wheelSize != null),
         assert(color != null);
 
   @override
@@ -23,9 +23,13 @@ class CarriageSection extends StatelessWidget {
             color: color
           ),
           child: Container(
-            height: size,
+            height: wheelSize,
             width: 50
           )
+        ),
+        Carriage(
+          wheelSize: wheelSize,
+          color: color
         )
       ],
     );

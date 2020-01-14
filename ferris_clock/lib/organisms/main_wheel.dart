@@ -20,7 +20,7 @@ class MainWheel extends StatelessWidget {
     List<int> hours = [1,2,3,4];
     return hours.map((it) => 
       CarriageSection(
-        size: wheelSize,
+        wheelSize: wheelSize,
         color: wheelColor,
       )
     ).toList();
@@ -31,7 +31,7 @@ class MainWheel extends StatelessWidget {
     final double innerWheelSize = wheelSize / _innerWheelScale;
 
     List<Widget> children = new List();
-    children.addAll(generateCarriageSection());
+    // children.addAll(generateCarriageSection());
     children.add(
       HollowCircle(
         color: wheelColor,

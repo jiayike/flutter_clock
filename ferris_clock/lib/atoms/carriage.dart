@@ -1,12 +1,42 @@
 import 'package:flutter/material.dart';
 
-class Carriage extends CustomPainter {
+class Carriage extends StatelessWidget {
+
+  final Color color;
+  final double wheelSize;
+
+  Carriage({
+    @required this.color,
+    @required this.wheelSize
+  })  : assert(color != null),
+        assert(wheelSize != null);
+
+  @override
+  Widget build(BuildContext context) {
+    final double width = wheelSize * 0.1;
+    final height = width * 2;
+
+    return Center(
+      child: SizedBox(
+        height: height,
+        width: width,
+        child: CustomPaint(
+          painter: _CarriagePainter(
+            color: color,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _CarriagePainter extends CustomPainter {
 
   final Color color;
 
   Paint _paint;
 
-  Carriage({
+  _CarriagePainter({
     @required this.color
   })  : assert(color != null) {
     _paint = Paint()
@@ -17,7 +47,6 @@ class Carriage extends CustomPainter {
   
   @override
   void paint(Canvas canvas, Size size) {
-    assert(size.aspectRatio == 0.5);
     canvas.drawPath(getCarriagePath(size.width, size.height), _paint);
   }
 
