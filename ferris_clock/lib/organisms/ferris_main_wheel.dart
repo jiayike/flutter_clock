@@ -3,25 +3,33 @@ import 'package:flutter/material.dart';
 import '../atoms/hollow_circle.dart';
 import '../molecules/ferris_pod_section.dart';
 
-class MainWheel extends StatelessWidget {
+class FerrisMainWheel extends StatelessWidget {
 
   final double wheelSize;
   final Color wheelColor;
 
   final int _innerWheelScale = 2;
 
-  MainWheel({
+  FerrisMainWheel({
     @required this.wheelSize,
     @required this.wheelColor
   })  : assert(wheelSize != null),
         assert(wheelColor != null);
 
   List<Widget> generateCarriageSection() {
+
     List<int> hours = [1];
+
+    final double beamLength = wheelSize;
+    final double podHeight = wheelSize * 0.2;
+    final double podWidth = podHeight / 2;
+
     return hours.map((it) => 
       FerrisPodSection(
-        wheelSize: wheelSize,
         color: wheelColor,
+        beamLength: beamLength,
+        podHeight: podHeight,
+        podWidth: podWidth
       )
     ).toList();
   }

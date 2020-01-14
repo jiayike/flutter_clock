@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../atoms/ferris_support.dart';
-import '../organisms/main_wheel.dart';
+import '../organisms/ferris_main_wheel.dart';
 
 class FerrisClock extends StatelessWidget {
 
@@ -16,17 +16,21 @@ class FerrisClock extends StatelessWidget {
     final double deviceHeight = MediaQuery.of(context).size.height;
     final double wheelSize = deviceHeight / 1.8;
 
+    final double ferrisSupportHeight = wheelSize * 1.5;
+    final double ferrisSupportWidth = wheelSize / 4;
+
     return Stack(
       alignment: Alignment.center,
       children: <Widget>[
-        MainWheel(
+        FerrisMainWheel(
           wheelColor: baseColor,
           wheelSize: wheelSize
         ),
         FerrisSupport(
           color: baseColor,
-          wheelSize: wheelSize,
-        ),
+          height: ferrisSupportHeight,
+          width: ferrisSupportWidth
+        )
       ],
     );
   }

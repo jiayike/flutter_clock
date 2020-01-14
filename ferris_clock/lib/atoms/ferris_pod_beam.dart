@@ -1,27 +1,27 @@
 import 'package:flutter/material.dart';
 
-class FerrisPodSupport extends StatelessWidget {
+class FerrisPodBeam extends StatelessWidget {
 
   final Color color;
-  final double height;
-  final double width;
+  final double length;
+  final double thickness;
 
-  FerrisPodSupport({
+  FerrisPodBeam({
     @required this.color,
-    @required this.height,
-    @required this.width,
+    @required this.length,
+    @required this.thickness,
   })  : assert(color != null),
-        assert(height != null),
-        assert(width != null);
+        assert(length != null),
+        assert(thickness != null);
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: SizedBox(
-        height: height,
-        width: width,
+        height: length,
+        width: thickness,
         child: CustomPaint(
-          painter: _FerrisPodSupportPainter(
+          painter: _FerrisPodBeamPainter(
             color: color,
           ),
         ),
@@ -30,13 +30,13 @@ class FerrisPodSupport extends StatelessWidget {
   }
 }
 
-class _FerrisPodSupportPainter extends CustomPainter {
+class _FerrisPodBeamPainter extends CustomPainter {
 
   final Color color;
 
   Paint _paint;
 
-  _FerrisPodSupportPainter({
+  _FerrisPodBeamPainter({
     @required this.color
   })  : assert(color != null) {
     _paint = Paint()

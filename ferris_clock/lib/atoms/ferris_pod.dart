@@ -3,19 +3,19 @@ import 'package:flutter/material.dart';
 class FerrisPod extends StatelessWidget {
 
   final Color color;
-  final double wheelSize;
+  final double height;
+  final double width;
 
   FerrisPod({
     @required this.color,
-    @required this.wheelSize
+    @required this.height,
+    @required this.width
   })  : assert(color != null),
-        assert(wheelSize != null);
+        assert(height != null),
+        assert(width != null);
 
   @override
   Widget build(BuildContext context) {
-    final double width = wheelSize * 0.1;
-    final height = width * 2;
-
     return Center(
       child: SizedBox(
         height: height,

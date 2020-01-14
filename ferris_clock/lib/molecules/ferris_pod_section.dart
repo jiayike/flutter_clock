@@ -1,34 +1,41 @@
 import 'package:flutter/material.dart';
 
-import '../atoms/ferris_pod_support.dart';
+import '../atoms/ferris_pod_beam.dart';
 import '../atoms/ferris_pod.dart';
 
 class FerrisPodSection extends StatelessWidget {
 
-  final double wheelSize;
   final Color color;
+  final double beamLength;
+  final double podHeight;
+  final double podWidth;
 
   FerrisPodSection({
-    @required this.wheelSize,
     @required this.color,
-  })  : assert(wheelSize != null),
-        assert(color != null);
+    @required this.beamLength,
+    @required this.podHeight,
+    @required this.podWidth
+  })  : assert(color != null),
+        assert(beamLength != null),
+        assert(podHeight != null),
+        assert(podWidth != null);
 
   @override
   Widget build(BuildContext context) {
+    final double beamThickness = beamLength * 0.08;
+
     return Stack(
+      alignment: Alignment.topCenter,
       children: <Widget>[
-        FerrisPodSupport(
+        FerrisPodBeam(
           color: color,
-          height: wheelSize,
-          width: wheelSize / 10
+          length: beamLength,
+          thickness: beamThickness
         ),
-        Transform.translate(
-          offset: Offset(0, -wheelSize / 10),
-          child: FerrisPod(
-            wheelSize: wheelSize,
-            color: color
-          )
+        FerrisPod(
+          height: podHeight,
+          width: podWidth,
+          color: color
         )
       ],
     );
