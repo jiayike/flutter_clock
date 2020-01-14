@@ -1,12 +1,42 @@
 import 'package:flutter/material.dart';
 
-class CarriageSupport extends CustomPainter {
+class CarriageSupport extends StatelessWidget {
+
+  final Color color;
+  final double height;
+  final double width;
+
+  CarriageSupport({
+    @required this.color,
+    @required this.height,
+    @required this.width,
+  })  : assert(color != null),
+        assert(height != null),
+        assert(width != null);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: SizedBox(
+        height: height,
+        width: width,
+        child: CustomPaint(
+          painter: _CarriageSupportPainter(
+            color: color,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _CarriageSupportPainter extends CustomPainter {
 
   final Color color;
 
   Paint _paint;
 
-  CarriageSupport({
+  _CarriageSupportPainter({
     @required this.color
   })  : assert(color != null) {
     _paint = Paint()
@@ -22,10 +52,9 @@ class CarriageSupport extends CustomPainter {
 
   Path getCarriageSupportPath(double x, double y) {
     return Path()
-      ..moveTo(0, y)
-      ..lineTo(x, y)
-      ..lineTo(x, y * 0.8)
-      ..lineTo(x, y * 0.2);
+      ..moveTo(x / 2, y / 2)
+      ..lineTo(x, 0)
+      ..lineTo(0, 0);
   }
 
   @override

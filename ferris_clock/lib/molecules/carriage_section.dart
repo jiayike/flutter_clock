@@ -18,18 +18,17 @@ class CarriageSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: <Widget>[
-        CustomPaint(
-          painter: CarriageSupport(
-            color: color
-          ),
-          child: Container(
-            height: wheelSize,
-            width: 50
-          )
+        CarriageSupport(
+          color: color,
+          height: wheelSize,
+          width: wheelSize / 10
         ),
-        Carriage(
-          wheelSize: wheelSize,
-          color: color
+        Transform.translate(
+          offset: Offset(0, -wheelSize / 10),
+          child: Carriage(
+            wheelSize: wheelSize,
+            color: color
+          )
         )
       ],
     );
