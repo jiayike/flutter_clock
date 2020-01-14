@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class Carriage extends StatelessWidget {
+class FerrisPod extends StatelessWidget {
 
   final Color color;
   final double wheelSize;
 
-  Carriage({
+  FerrisPod({
     @required this.color,
     @required this.wheelSize
   })  : assert(color != null),
@@ -21,7 +21,7 @@ class Carriage extends StatelessWidget {
         height: height,
         width: width,
         child: CustomPaint(
-          painter: _CarriagePainter(
+          painter: _FerrisPodPainter(
             color: color,
           ),
         ),
@@ -30,13 +30,13 @@ class Carriage extends StatelessWidget {
   }
 }
 
-class _CarriagePainter extends CustomPainter {
+class _FerrisPodPainter extends CustomPainter {
 
   final Color color;
 
   Paint _paint;
 
-  _CarriagePainter({
+  _FerrisPodPainter({
     @required this.color
   })  : assert(color != null) {
     _paint = Paint()
