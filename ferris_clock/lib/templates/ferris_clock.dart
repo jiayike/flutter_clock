@@ -17,7 +17,7 @@ class FerrisClock extends StatelessWidget {
     final double wheelSize = deviceHeight / 1.8;
 
     final double ferrisSupportHeight = wheelSize * 1.5;
-    final double ferrisSupportWidth = wheelSize / 4;
+    final double ferrisSupportWidth = wheelSize / 5;
 
     return Stack(
       alignment: Alignment.center,

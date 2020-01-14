@@ -43,14 +43,14 @@ class FerrisMainWheel extends StatelessWidget {
     children.add(
       HollowCircle(
         color: wheelColor,
-        thickness: 15,
+        thickness: 5,
         size: wheelSize
       )
     );
     children.add(
       HollowCircle(
         color: wheelColor,
-        thickness: 15,
+        thickness: 2,
         size: innerWheelSize
       )
     );
