@@ -17,10 +17,10 @@ class FerrisSupport extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    canvas.drawPath(getFoundationPath(size.width, size.height), _paint);
+    canvas.drawPath(getFerrisSupportPath(size.width, size.height), _paint);
   }
 
-  Path getFoundationPath(double x, double y) {
+  Path getFerrisSupportPath(double x, double y) {
     final Map topLeftCutoff = {
       x: x * 1/4,
       y: y * 1/2
