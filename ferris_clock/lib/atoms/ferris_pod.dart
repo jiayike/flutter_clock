@@ -47,10 +47,10 @@ class _FerrisPodPainter extends CustomPainter {
   
   @override
   void paint(Canvas canvas, Size size) {
-    canvas.drawPath(getCarriagePath(size.width, size.height), _paint);
+    canvas.drawPath(getPodPath(size.width, size.height), _paint);
   }
 
-  Path getCarriagePath(double x, double y) {
+  Path getPodPath(double x, double y) {
     return Path()
       ..moveTo(x, y)
       ..lineTo(0, y)
