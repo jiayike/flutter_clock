@@ -1,14 +1,52 @@
 import 'package:flutter/material.dart';
 
-class FerrisSupport extends CustomPainter {
+class FerrisSupport extends StatelessWidget {
 
   final Color color;
+  final double wheelSize;
+
+  FerrisSupport({
+    @required this.color,
+    @required this.wheelSize
+  })  : assert(color != null),
+        assert(wheelSize != null);
+
+  @override
+  Widget build(BuildContext context) {
+    final double height = wheelSize * 1.5;
+    final double width = wheelSize / 4;
+
+    return Center(
+      child: SizedBox(
+        height: height,
+        width: width,
+        child: CustomPaint(
+          painter: _FerrisSupportPainter(
+            color: color,
+            height: height,
+            width: width,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _FerrisSupportPainter extends CustomPainter {
+
+  final Color color;
+  final double height;
+  final double width;
 
   Paint _paint;
 
-  FerrisSupport({
-    @required this.color
-  })  : assert(color != null) {
+  _FerrisSupportPainter({
+    @required this.color,
+    @required this.height,
+    @required this.width,
+  })  : assert(color != null),
+        assert(height != null),
+        assert(width != null) {
     _paint = Paint()
       ..color = this.color
       ..strokeWidth = 1

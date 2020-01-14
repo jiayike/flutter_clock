@@ -23,12 +23,10 @@ class FerrisClock extends StatelessWidget {
           wheelColor: baseColor,
           wheelSize: wheelSize
         ),
-        CustomPaint(
-          painter: FerrisSupport(
-            color: baseColor,
-          ),
-          child: Container(width: wheelSize / 4, height: wheelSize * 1.5),
-        )
+        FerrisSupport(
+          color: baseColor,
+          wheelSize: wheelSize,
+        ),
       ],
     );
   }
