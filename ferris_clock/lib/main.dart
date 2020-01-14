@@ -9,7 +9,7 @@ import 'package:flutter_clock_helper/model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'templates/home.dart';
+import 'pages/home.dart';
 
 void main() {
   // A temporary measure until Platform supports web and TargetPlatform supports
@@ -31,5 +31,5 @@ void main() {
   // Your job is to edit [DigitalClock], or replace it with your
   // own clock widget. (Look in digital_clock.dart for more details!)
   // runApp(ClockCustomizer((ClockModel model) => FerrisClock(model)));
-  runApp(ClockCustomizer((ClockModel model) => Home()));
+  runApp(ClockCustomizer((ClockModel model) => Home(model)));
 }

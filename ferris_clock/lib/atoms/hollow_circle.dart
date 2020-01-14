@@ -1,17 +1,52 @@
 import 'package:flutter/material.dart';
 
-class HollowCircle extends CustomPainter {
+class HollowCircle extends StatelessWidget {
 
   final Color color;
-  final double strokeWidth;
-
-  Paint _paint;
+  final double thickness;
+  final double size;
 
   HollowCircle({
     @required this.color,
-    @required this.strokeWidth
+    @required this.thickness,
+    @required this.size
   })  : assert(color != null),
-        assert(strokeWidth != null) {
+        assert(thickness != null),
+        assert(size != null);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: SizedBox(
+        height: size,
+        width: size,
+        child: CustomPaint(
+          painter: _HollowCirclePainter(
+            color: color,
+            strokeWidth: thickness,
+            radius: size / 2
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _HollowCirclePainter extends CustomPainter {
+
+  final Color color;
+  final double strokeWidth;
+  final double radius;
+
+  Paint _paint;
+
+  _HollowCirclePainter({
+    @required this.color,
+    @required this.strokeWidth,
+    @required this.radius
+  })  : assert(color != null),
+        assert(strokeWidth != null),
+        assert(radius != null) {
     _paint = Paint()
       ..color = this.color
       ..strokeWidth = this.strokeWidth
@@ -20,8 +55,7 @@ class HollowCircle extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    assert(size.height == size.width); // Child has to be square
-    canvas.drawCircle(Offset(size.width / 2, size.height / 2), size.height / 2, _paint);
+    canvas.drawCircle(Offset(radius, radius), radius, _paint);
   }
 
   @override

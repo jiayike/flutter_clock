@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
 import '../atoms/ferris_support.dart';
-import '../molecules/main_wheel.dart';
+import '../organisms/main_wheel.dart';
 
 class FerrisClock extends StatelessWidget {
 
-  final Color color;
+  final Color baseColor;
 
   FerrisClock({
-    @required this.color
-  })  : assert(color != null);
+    @required this.baseColor
+  })  : assert(baseColor != null);
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +20,12 @@ class FerrisClock extends StatelessWidget {
       alignment: Alignment.center,
       children: <Widget>[
         MainWheel(
-          color: color,
+          wheelColor: baseColor,
           wheelSize: wheelSize
         ),
         CustomPaint(
           painter: FerrisSupport(
-            color: color,
+            color: baseColor,
           ),
           child: Container(width: wheelSize / 4, height: wheelSize * 1.5),
         )
