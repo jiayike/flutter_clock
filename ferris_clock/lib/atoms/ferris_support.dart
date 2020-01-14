@@ -22,9 +22,7 @@ class FerrisSupport extends StatelessWidget {
         width: width,
         child: CustomPaint(
           painter: _FerrisSupportPainter(
-            color: color,
-            height: height,
-            width: width,
+            color: color
           ),
         ),
       ),
@@ -35,18 +33,12 @@ class FerrisSupport extends StatelessWidget {
 class _FerrisSupportPainter extends CustomPainter {
 
   final Color color;
-  final double height;
-  final double width;
 
   Paint _paint;
 
   _FerrisSupportPainter({
-    @required this.color,
-    @required this.height,
-    @required this.width,
-  })  : assert(color != null),
-        assert(height != null),
-        assert(width != null) {
+    @required this.color
+  })  : assert(color != null) {
     _paint = Paint()
       ..color = this.color
       ..strokeWidth = 1

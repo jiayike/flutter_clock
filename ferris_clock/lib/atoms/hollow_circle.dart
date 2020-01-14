@@ -23,8 +23,7 @@ class HollowCircle extends StatelessWidget {
         child: CustomPaint(
           painter: _HollowCirclePainter(
             color: color,
-            strokeWidth: thickness,
-            radius: size / 2
+            strokeWidth: thickness
           ),
         ),
       ),
@@ -36,17 +35,14 @@ class _HollowCirclePainter extends CustomPainter {
 
   final Color color;
   final double strokeWidth;
-  final double radius;
 
   Paint _paint;
 
   _HollowCirclePainter({
     @required this.color,
     @required this.strokeWidth,
-    @required this.radius
   })  : assert(color != null),
-        assert(strokeWidth != null),
-        assert(radius != null) {
+        assert(strokeWidth != null) {
     _paint = Paint()
       ..color = this.color
       ..strokeWidth = this.strokeWidth
@@ -55,6 +51,8 @@ class _HollowCirclePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
+    final double radius = size.width / 2;
+
     canvas.drawCircle(Offset(radius, radius), radius, _paint);
   }
 
