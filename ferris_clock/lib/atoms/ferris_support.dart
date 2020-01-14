@@ -21,11 +21,11 @@ class FerrisSupport extends CustomPainter {
   }
 
   Path getFoundationPath(double x, double y) {
-    var topLeftCutoff = {
+    final Map topLeftCutoff = {
       x: x * 1/4,
       y: y * 1/2
     };
-    var topRightCutoff = {
+    final Map topRightCutoff = {
       x: x * 3/4,
       y: y * 1/2
     };
