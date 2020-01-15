@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 
 class FerrisPod extends StatelessWidget {
@@ -47,15 +49,28 @@ class _FerrisPodPainter extends CustomPainter {
   
   @override
   void paint(Canvas canvas, Size size) {
-    canvas.drawPath(getPodPath(size.width, size.height), _paint);
-  }
+    final degrees = 180;
+    final double radians = degrees * math.pi / 180;
 
-  Path getPodPath(double x, double y) {
-    return Path()
-      ..moveTo(x, y)
-      ..lineTo(0, y)
-      ..lineTo(x, 0)
-      ..lineTo(x, y);
+    canvas.translate(size.width / 2, size.height * 0.1);
+    canvas.rotate(radians);
+    canvas.translate(-size.width / 2, -size.height * 0.1);
+
+    canvas.drawArc(
+      Rect.fromCenter(
+        center: Offset(size.width / 2, size.height / 2),
+        height: size.height,
+        width: size.width,
+      ),
+      math.pi,
+      math.pi,
+      false,
+      _paint,
+    );
+    canvas.drawRect(
+      Rect.fromLTRB(size.width * 0.1, size.height * 0.6, size.width * 0.9, size.height),
+      _paint
+    );
   }
 
   @override

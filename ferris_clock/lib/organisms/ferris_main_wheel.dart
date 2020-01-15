@@ -16,13 +16,13 @@ class FerrisMainWheel extends StatelessWidget {
   })  : assert(wheelSize != null),
         assert(wheelColor != null);
 
-  List<Widget> generateCarriageSection() {
+  List<Widget> generateFerrisPodSection() {
 
     List<int> hours = [1];
 
     final double beamLength = wheelSize;
     final double podHeight = wheelSize * 0.2;
-    final double podWidth = podHeight / 2;
+    final double podWidth = podHeight * 0.8;
 
     return hours.map((it) => 
       FerrisPodSection(
@@ -39,7 +39,7 @@ class FerrisMainWheel extends StatelessWidget {
     final double innerWheelSize = wheelSize / _innerWheelScale;
 
     List<Widget> children = new List();
-    children.addAll(generateCarriageSection());
+    children.addAll(generateFerrisPodSection());
     children.add(
       HollowCircle(
         color: wheelColor,
