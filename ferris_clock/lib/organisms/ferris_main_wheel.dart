@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 
 import '../atoms/hollow_circle.dart';
@@ -18,20 +20,25 @@ class FerrisMainWheel extends StatelessWidget {
 
   List<Widget> generateFerrisPodSection() {
 
-    List<int> hours = [1];
+    List<int> hours = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
     final double beamLength = wheelSize;
     final double podHeight = wheelSize * 0.2;
     final double podWidth = podHeight * 0.8;
 
-    return hours.map((it) => 
-      FerrisPodSection(
+    return hours.asMap().entries.map((MapEntry entry) {
+      final degreesDiff = 360 / hours.length;
+      final degrees = degreesDiff * entry.key;
+      final double radians = degrees * math.pi / 180;
+      
+      return FerrisPodSection(
         color: wheelColor,
         beamLength: beamLength,
         podHeight: podHeight,
-        podWidth: podWidth
-      )
-    ).toList();
+        podWidth: podWidth,
+        angleRadians: radians
+      );
+    }).toList();
   }
 
   @override

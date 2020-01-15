@@ -10,11 +10,14 @@ class FerrisPodSection extends StatelessWidget {
   final double podHeight;
   final double podWidth;
 
+  final double angleRadians;
+
   FerrisPodSection({
     @required this.color,
     @required this.beamLength,
     @required this.podHeight,
-    @required this.podWidth
+    @required this.podWidth,
+    @required this.angleRadians
   })  : assert(color != null),
         assert(beamLength != null),
         assert(podHeight != null),
@@ -24,20 +27,25 @@ class FerrisPodSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final double beamThickness = beamLength * 0.08;
 
-    return Stack(
-      alignment: Alignment.topCenter,
-      children: <Widget>[
-        FerrisPodBeam(
-          color: color,
-          length: beamLength,
-          thickness: beamThickness
-        ),
-        FerrisPod(
-          height: podHeight,
-          width: podWidth,
-          color: color
-        )
-      ],
+    return Transform.rotate(
+      origin: Offset(0, 0),
+      angle: angleRadians,
+      child: Stack(
+        alignment: Alignment.topCenter,
+        children: <Widget>[
+          FerrisPodBeam(
+            color: color,
+            length: beamLength,
+            thickness: beamThickness,
+          ),
+          FerrisPod(
+            height: podHeight,
+            width: podWidth,
+            color: color,
+            angleRadians: angleRadians
+          )
+        ],
+      )
     );
   }
 }
