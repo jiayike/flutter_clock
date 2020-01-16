@@ -1,6 +1,5 @@
-import 'dart:math' as math;
-
 import 'package:flutter/material.dart';
+import 'package:vector_math/vector_math_64.dart' show radians;
 
 import '../atoms/hollow_circle.dart';
 import '../molecules/ferris_pod_section.dart';
@@ -42,7 +41,7 @@ class _FerrisMainWheelState extends State<FerrisMainWheel> with SingleTickerProv
       vsync: this,
       duration: new Duration(seconds: 60)
     );
-    animation = Tween<double>(begin: 0, end: convertDegreesToRadians(360)).animate(controller);
+    animation = Tween<double>(begin: 0, end: radians(360)).animate(controller);
 
     controller.repeat();
   }
@@ -51,10 +50,6 @@ class _FerrisMainWheelState extends State<FerrisMainWheel> with SingleTickerProv
   void dispose() {
     controller.dispose();
     super.dispose();
-  }
-
-  double convertDegreesToRadians(double degrees) {
-    return degrees * math.pi / 180;
   }
 
   List<Widget> generateFerrisPodSection() {
@@ -68,14 +63,14 @@ class _FerrisMainWheelState extends State<FerrisMainWheel> with SingleTickerProv
     return hours.asMap().entries.map((MapEntry entry) {
       final degreesDiff = 360 / hours.length;
       final degrees = degreesDiff * entry.key;
-      final double radians = convertDegreesToRadians(degrees);
+      final double angleRadians = radians(degrees);
       
       return FerrisPodSection(
         color: wheelColor,
         beamLength: beamLength,
         podHeight: podHeight,
         podWidth: podWidth,
-        angleRadians: radians,
+        angleRadians: angleRadians,
         animation: animation
       );
     }).toList();

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../atoms/ferris_support.dart';
-import '../organisms/ferris_main_wheel.dart';
+import '../molecules/ferris_main_wheel.dart';
 
 class FerrisClock extends StatelessWidget {
   FerrisClock({
