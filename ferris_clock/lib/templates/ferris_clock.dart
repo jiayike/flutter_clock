@@ -14,7 +14,7 @@ class FerrisClock extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double deviceHeight = MediaQuery.of(context).size.height;
-    final double wheelSize = deviceHeight / 1.8;
+    final double wheelSize = deviceHeight / 1.5;
 
     final double ferrisSupportHeight = wheelSize * 1.5;
     final double ferrisSupportWidth = wheelSize / 5;

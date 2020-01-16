@@ -40,7 +40,7 @@ class _FerrisMainWheelState extends State<FerrisMainWheel> with SingleTickerProv
     super.initState();
     controller = new AnimationController(
       vsync: this,
-      duration: new Duration(seconds: 60),
+      duration: new Duration(seconds: 60)
     );
     animation = Tween<double>(begin: 0, end: convertDegreesToRadians(360)).animate(controller);
 

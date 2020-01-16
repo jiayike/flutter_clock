@@ -11,7 +11,7 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color wheelColor = Theme.of(context).primaryColor;
+    final Color wheelColor = Theme.of(context).disabledColor;
 
     return Container(
       child: Stack(
