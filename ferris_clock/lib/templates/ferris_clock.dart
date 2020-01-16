@@ -4,12 +4,11 @@ import '../atoms/ferris_support.dart';
 import '../organisms/ferris_main_wheel.dart';
 
 class FerrisClock extends StatelessWidget {
-
-  final Color baseColor;
-
   FerrisClock({
     @required this.baseColor
   })  : assert(baseColor != null);
+
+  final Color baseColor;
 
   @override
   Widget build(BuildContext context) {

@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 
 class HollowCircle extends StatelessWidget {
-
-  final Color color;
-  final double thickness;
-  final double size;
-
   HollowCircle({
     @required this.color,
     @required this.thickness,
@@ -13,6 +8,10 @@ class HollowCircle extends StatelessWidget {
   })  : assert(color != null),
         assert(thickness != null),
         assert(size != null);
+
+  final Color color;
+  final double thickness;
+  final double size;
 
   @override
   Widget build(BuildContext context) {

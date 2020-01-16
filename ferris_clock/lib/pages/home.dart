@@ -4,8 +4,7 @@ import 'package:flutter_clock_helper/model.dart';
 import '../templates/ferris_clock.dart';
 
 class Home extends StatelessWidget {
-
-  const Home(this.model);
+  Home(this.model);
 
   final ClockModel model;
 

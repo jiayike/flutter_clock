@@ -3,11 +3,6 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
 class FerrisPod extends StatelessWidget {
-
-  final Color color;
-  final double height;
-  final double width;
-
   FerrisPod({
     @required this.color,
     @required this.height,
@@ -15,6 +10,10 @@ class FerrisPod extends StatelessWidget {
   })  : assert(color != null),
         assert(height != null),
         assert(width != null);
+
+  final Color color;
+  final double height;
+  final double width;
 
   @override
   Widget build(BuildContext context) {

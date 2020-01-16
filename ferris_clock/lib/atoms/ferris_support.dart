@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 
 class FerrisSupport extends StatelessWidget {
-
-  final Color color;
-  final double height;
-  final double width;
-
   FerrisSupport({
     @required this.color,
     @required this.height,
@@ -13,6 +8,10 @@ class FerrisSupport extends StatelessWidget {
   })  : assert(color != null),
         assert(height != null),
         assert(width != null);
+
+  final Color color;
+  final double height;
+  final double width;
 
   @override
   Widget build(BuildContext context) {

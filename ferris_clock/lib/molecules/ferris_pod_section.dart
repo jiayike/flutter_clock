@@ -4,14 +4,6 @@ import '../atoms/ferris_pod_beam.dart';
 import '../atoms/ferris_pod.dart';
 
 class FerrisPodSection extends AnimatedWidget {
-
-  final Color color;
-  final double beamLength;
-  final double podHeight;
-  final double podWidth;
-
-  final double angleRadians;
-
   FerrisPodSection({
     @required this.color,
     @required this.beamLength,
@@ -25,6 +17,13 @@ class FerrisPodSection extends AnimatedWidget {
         assert(podHeight != null),
         assert(podWidth != null),
         super(key: key, listenable: animation);
+
+  final Color color;
+  final double beamLength;
+  final double podHeight;
+  final double podWidth;
+
+  final double angleRadians;
 
   @override
   Widget build(BuildContext context) {

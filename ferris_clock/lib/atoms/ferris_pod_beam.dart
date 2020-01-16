@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 
 class FerrisPodBeam extends StatelessWidget {
-
-  final Color color;
-  final double length;
-  final double thickness;
-
   FerrisPodBeam({
     @required this.color,
     @required this.length,
@@ -13,6 +8,10 @@ class FerrisPodBeam extends StatelessWidget {
   })  : assert(color != null),
         assert(length != null),
         assert(thickness != null);
+
+  final Color color;
+  final double length;
+  final double thickness;
 
   @override
   Widget build(BuildContext context) {

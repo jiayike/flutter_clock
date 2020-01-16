@@ -21,6 +21,12 @@ class FerrisMainWheel extends StatefulWidget {
 }
 
 class _FerrisMainWheelState extends State<FerrisMainWheel> with SingleTickerProviderStateMixin {
+  _FerrisMainWheelState({
+    @required this.wheelSize,
+    @required this.wheelColor
+  })  : assert(wheelSize != null),
+        assert(wheelColor != null);
+
   final double wheelSize;
   final Color wheelColor;
 
@@ -28,12 +34,6 @@ class _FerrisMainWheelState extends State<FerrisMainWheel> with SingleTickerProv
 
   Animation<double> animation;
   AnimationController controller;
-
-  _FerrisMainWheelState({
-    @required this.wheelSize,
-    @required this.wheelColor
-  })  : assert(wheelSize != null),
-        assert(wheelColor != null);
 
   @override
   void initState() {
