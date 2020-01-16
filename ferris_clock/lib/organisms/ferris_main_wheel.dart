@@ -5,18 +5,57 @@ import 'package:flutter/material.dart';
 import '../atoms/hollow_circle.dart';
 import '../molecules/ferris_pod_section.dart';
 
-class FerrisMainWheel extends StatelessWidget {
+class FerrisMainWheel extends StatefulWidget {
 
   final double wheelSize;
   final Color wheelColor;
-
-  final int _innerWheelScale = 2;
 
   FerrisMainWheel({
     @required this.wheelSize,
     @required this.wheelColor
   })  : assert(wheelSize != null),
         assert(wheelColor != null);
+
+  @override
+  _FerrisMainWheelState createState() => new _FerrisMainWheelState(wheelSize: wheelSize, wheelColor: wheelColor);
+}
+
+class _FerrisMainWheelState extends State<FerrisMainWheel> with SingleTickerProviderStateMixin {
+  final double wheelSize;
+  final Color wheelColor;
+
+  final int _innerWheelScale = 2;
+
+  Animation<double> animation;
+  AnimationController controller;
+
+  _FerrisMainWheelState({
+    @required this.wheelSize,
+    @required this.wheelColor
+  })  : assert(wheelSize != null),
+        assert(wheelColor != null);
+
+  @override
+  void initState() {
+    super.initState();
+    controller = new AnimationController(
+      vsync: this,
+      duration: new Duration(seconds: 60),
+    );
+    animation = Tween<double>(begin: 0, end: convertDegreesToRadians(360)).animate(controller);
+
+    controller.repeat();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  double convertDegreesToRadians(double degrees) {
+    return degrees * math.pi / 180;
+  }
 
   List<Widget> generateFerrisPodSection() {
 
@@ -29,14 +68,15 @@ class FerrisMainWheel extends StatelessWidget {
     return hours.asMap().entries.map((MapEntry entry) {
       final degreesDiff = 360 / hours.length;
       final degrees = degreesDiff * entry.key;
-      final double radians = degrees * math.pi / 180;
+      final double radians = convertDegreesToRadians(degrees);
       
       return FerrisPodSection(
         color: wheelColor,
         beamLength: beamLength,
         podHeight: podHeight,
         podWidth: podWidth,
-        angleRadians: radians
+        angleRadians: radians,
+        animation: animation
       );
     }).toList();
   }
@@ -62,9 +102,18 @@ class FerrisMainWheel extends StatelessWidget {
       )
     );
 
-    return Stack(
-      alignment: Alignment.center,
-      children: children
+    return AnimatedBuilder(
+      animation: animation,
+      child: Stack(
+        alignment: Alignment.center,
+        children: children
+      ),
+      builder: (BuildContext context, Widget _widget) {
+        return Transform.rotate(
+          angle: animation.value,
+          child: _widget,
+        );
+      },
     );
   }
 }

@@ -8,17 +8,13 @@ class FerrisPod extends StatelessWidget {
   final double height;
   final double width;
 
-  final double angleRadians;
-
   FerrisPod({
     @required this.color,
     @required this.height,
-    @required this.width,
-    @required this.angleRadians
+    @required this.width
   })  : assert(color != null),
         assert(height != null),
-        assert(width != null),
-        assert(angleRadians != null);
+        assert(width != null);
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +24,7 @@ class FerrisPod extends StatelessWidget {
         width: width,
         child: CustomPaint(
           painter: _FerrisPodPainter(
-            color: color,
-            angleRadians: angleRadians
+            color: color
           ),
         ),
       ),
@@ -40,15 +35,12 @@ class FerrisPod extends StatelessWidget {
 class _FerrisPodPainter extends CustomPainter {
 
   final Color color;
-  final double angleRadians;
 
   Paint _paint;
 
   _FerrisPodPainter({
-    @required this.color,
-    @required this.angleRadians
-  })  : assert(color != null),
-        assert(angleRadians != null) {
+    @required this.color
+  })  : assert(color != null) {
     _paint = Paint()
       ..color = this.color
       ..strokeWidth = 1
@@ -57,10 +49,6 @@ class _FerrisPodPainter extends CustomPainter {
   
   @override
   void paint(Canvas canvas, Size size) {
-    canvas.translate(size.width / 2, size.height * 0.1);
-    canvas.rotate(-angleRadians);
-    canvas.translate(-size.width / 2, -size.height * 0.1);
-
     canvas.drawArc(
       Rect.fromCenter(
         center: Offset(size.width / 2, size.height / 2),
