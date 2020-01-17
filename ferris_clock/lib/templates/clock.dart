@@ -82,6 +82,8 @@ class _ClockState extends State<Clock> {
   @override
   Widget build(BuildContext context) {
     final time = DateFormat.Hms().format(DateTime.now());
+    final double deviceHeight = MediaQuery.of(context).size.height;
+    final double wheelSize = deviceHeight / 1.5;
 
     return Semantics.fromProperties(
       properties: SemanticsProperties(
@@ -96,6 +98,7 @@ class _ClockState extends State<Clock> {
               bottom: 0,
               child: FerrisClock(
                 baseColor: baseColor,
+                wheelSize: wheelSize
               )
             )
           ]
