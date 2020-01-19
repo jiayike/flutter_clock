@@ -6,11 +6,22 @@ import '../molecules/ferris_main_wheel.dart';
 class FerrisClock extends StatelessWidget {
   FerrisClock({
     @required this.baseColor,
-    @required this.wheelSize
-  })  : assert(baseColor != null);
+    @required this.wheelSize,
+    this.hour,
+    this.minute,
+    this.second
+  })  : assert(baseColor != null),
+        assert(wheelSize != null),
+        assert(hour != null),
+        assert(minute != null),
+        assert(second != null);
 
   final Color baseColor;
   final double wheelSize;
+
+  final int hour;
+  final int minute;
+  final int second;
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +32,11 @@ class FerrisClock extends StatelessWidget {
       alignment: Alignment.center,
       children: <Widget>[
         FerrisMainWheel(
-          wheelColor: baseColor,
-          wheelSize: wheelSize
+          baseColor: baseColor,
+          wheelSize: wheelSize,
+          hour: hour,
+          minute: minute,
+          second: second,
         ),
         FerrisSupport(
           color: baseColor,

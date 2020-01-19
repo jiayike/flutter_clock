@@ -37,15 +37,15 @@ class _FerrisSupportPainter extends CustomPainter {
 
   _FerrisSupportPainter({
     @required this.color
-  })  : assert(color != null) {
+  })  : assert(color != null);
+
+  @override
+  void paint(Canvas canvas, Size size) {
     _paint = Paint()
       ..color = this.color
       ..strokeWidth = 1
       ..style = PaintingStyle.fill;
-  }
 
-  @override
-  void paint(Canvas canvas, Size size) {
     canvas.drawPath(getFerrisSupportPath(size.width, size.height), _paint);
   }
 
@@ -68,7 +68,7 @@ class _FerrisSupportPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(CustomPainter oldDelegate) {
-    return false;
+  bool shouldRepaint(_FerrisSupportPainter oldDelegate) {
+    return oldDelegate.color != color;
   }
 }

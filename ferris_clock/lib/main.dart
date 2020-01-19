@@ -30,6 +30,5 @@ void main() {
   //
   // Your job is to edit [DigitalClock], or replace it with your
   // own clock widget. (Look in digital_clock.dart for more details!)
-  // runApp(ClockCustomizer((ClockModel model) => FerrisClock(model)));
   runApp(ClockCustomizer((ClockModel model) => Home(model)));
 }

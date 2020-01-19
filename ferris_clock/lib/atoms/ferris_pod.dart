@@ -39,15 +39,15 @@ class _FerrisPodPainter extends CustomPainter {
 
   _FerrisPodPainter({
     @required this.color
-  })  : assert(color != null) {
+  })  : assert(color != null);
+  
+  @override
+  void paint(Canvas canvas, Size size) {
     _paint = Paint()
       ..color = this.color
       ..strokeWidth = 1
       ..style = PaintingStyle.fill;
-  }
-  
-  @override
-  void paint(Canvas canvas, Size size) {
+
     canvas.drawArc(
       Rect.fromCenter(
         center: Offset(size.width / 2, size.height / 2),
@@ -66,7 +66,7 @@ class _FerrisPodPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(CustomPainter oldDelegate) {
-    return false;
+  bool shouldRepaint(_FerrisPodPainter oldDelegate) {
+    return oldDelegate.color != color;
   }
 }

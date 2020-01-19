@@ -17,15 +17,10 @@ class Clock extends StatefulWidget {
   final ClockModel model;
 
   @override
-  _ClockState createState() =>  new _ClockState(baseColor: baseColor);
+  _ClockState createState() => new _ClockState();
 }
 
 class _ClockState extends State<Clock> {
-  _ClockState({
-    @required this.baseColor
-  })  : assert(baseColor != null);
-
-  final Color baseColor;
   var _now = DateTime.now();
   var _temperature = '';
   var _temperatureRange = '';
@@ -59,30 +54,31 @@ class _ClockState extends State<Clock> {
   }
 
   void _updateModel() {
-    setState(() {
-      _temperature = widget.model.temperatureString;
-      _temperatureRange = '(${widget.model.low} - ${widget.model.highString})';
-      _condition = widget.model.weatherString;
-      _location = widget.model.location;
-    });
+    // setState(() {
+    //   _temperature = widget.model.temperatureString;
+    //   _temperatureRange = '(${widget.model.low} - ${widget.model.highString})';
+    //   _condition = widget.model.weatherString;
+    //   _location = widget.model.location;
+    // });
   }
 
   void _updateTime() {
-    setState(() {
-      _now = DateTime.now();
-      // Update once per second. Make sure to do it at the beginning of each
-      // new second, so that the clock is accurate.
-      _timer = Timer(
-        Duration(seconds: 1) - Duration(milliseconds: _now.millisecond),
-        _updateTime,
-      );
-    });
+    // setState(() {
+    //   _now = DateTime.now();
+    //   // Update once per second. Make sure to do it at the beginning of each
+    //   // new second, so that the clock is accurate.
+    //   _timer = Timer(
+    //     Duration(seconds: 1) - Duration(milliseconds: _now.millisecond),
+    //     _updateTime,
+    //   );
+    // });
   }
 
   @override
   Widget build(BuildContext context) {
     final time = DateFormat.Hms().format(DateTime.now());
     final double deviceHeight = MediaQuery.of(context).size.height;
+    // final double deviceWidth = MediaQuery.of(context).size.width;
     final double wheelSize = deviceHeight / 1.5;
 
     return Semantics.fromProperties(
@@ -93,12 +89,16 @@ class _ClockState extends State<Clock> {
       child: Container(
         child: Stack(
           children: <Widget>[
+            Container(),
             Positioned(
-              left: 50,
+              left: wheelSize / 4,
               bottom: 0,
               child: FerrisClock(
-                baseColor: baseColor,
-                wheelSize: wheelSize
+                baseColor: widget.baseColor,
+                wheelSize: wheelSize,
+                hour: _now.hour,
+                minute: _now.minute,
+                second: _now.second,
               )
             )
           ]

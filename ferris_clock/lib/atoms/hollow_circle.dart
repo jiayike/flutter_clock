@@ -41,22 +41,21 @@ class _HollowCirclePainter extends CustomPainter {
     @required this.color,
     @required this.strokeWidth,
   })  : assert(color != null),
-        assert(strokeWidth != null) {
-    _paint = Paint()
-      ..color = this.color
-      ..strokeWidth = this.strokeWidth
-      ..style = PaintingStyle.stroke;
-  }
+        assert(strokeWidth != null);
 
   @override
   void paint(Canvas canvas, Size size) {
     final double radius = size.width / 2;
+    _paint = Paint()
+      ..color = this.color
+      ..strokeWidth = this.strokeWidth
+      ..style = PaintingStyle.stroke;
 
     canvas.drawCircle(Offset(radius, radius), radius, _paint);
   }
 
   @override
-  bool shouldRepaint(CustomPainter oldDelegate) {
-    return false;
+  bool shouldRepaint(_HollowCirclePainter oldDelegate) {
+    return oldDelegate.color != color;
   }
 }
