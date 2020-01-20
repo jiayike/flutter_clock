@@ -31,17 +31,16 @@ class HollowCircle extends StatelessWidget {
 }
 
 class _HollowCirclePainter extends CustomPainter {
-
-  final Color color;
-  final double strokeWidth;
-
-  Paint _paint;
-
   _HollowCirclePainter({
     @required this.color,
     @required this.strokeWidth,
   })  : assert(color != null),
         assert(strokeWidth != null);
+
+  final Color color;
+  final double strokeWidth;
+
+  Paint _paint;
 
   @override
   void paint(Canvas canvas, Size size) {

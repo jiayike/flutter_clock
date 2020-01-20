@@ -32,14 +32,13 @@ class FerrisPod extends StatelessWidget {
 }
 
 class _FerrisPodPainter extends CustomPainter {
+  _FerrisPodPainter({
+    @required this.color
+  })  : assert(color != null);
 
   final Color color;
 
   Paint _paint;
-
-  _FerrisPodPainter({
-    @required this.color
-  })  : assert(color != null);
   
   @override
   void paint(Canvas canvas, Size size) {
