@@ -1,6 +1,6 @@
 # Ferris Clock
 
-First implementation of a Flutter project. Forgive me for the noob codes >.<
+First implementation of a Flutter project for the Flutter Clock Challenge [flutter.dev/clock](https://flutter.dev/clock). Please forgive me for the noob codes >.<
 
 Light mode
 
@@ -9,6 +9,10 @@ Light mode
 Dark mode
 
 <img src='dark.png' width='350'>
+
+Demo
+
+<img src='animate.gif' width='350'>
 
 ## TODOs:
 
