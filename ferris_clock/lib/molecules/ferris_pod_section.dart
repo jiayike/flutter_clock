@@ -5,21 +5,29 @@ import '../atoms/ferris_pod.dart';
 
 class FerrisPodSection extends AnimatedWidget {
   FerrisPodSection({
-    @required this.color,
+    @required this.baseColor,
+    @required this.beamColor,
     @required this.beamLength,
+    this.beamCompletedLength = 0.0,
+    @required this.podColor,
     @required this.podHeight,
     @required this.podWidth,
     @required this.angleRadians,
     Key key,
     @required Animation<double> animation
-  })  : assert(color != null),
+  })  : assert(baseColor != null),
+        assert(beamColor != null),
         assert(beamLength != null),
+        assert(beamCompletedLength != null),
         assert(podHeight != null),
         assert(podWidth != null),
         super(key: key, listenable: animation);
 
-  final Color color;
+  final Color baseColor;
+  final Color beamColor;
   final double beamLength;
+  final double beamCompletedLength;
+  final Color podColor;
   final double podHeight;
   final double podWidth;
 
@@ -36,17 +44,12 @@ class FerrisPodSection extends AnimatedWidget {
       child: Stack(
         alignment: Alignment.topCenter,
         children: <Widget>[
-          FerrisPodBeam(
-            color: color,
-            length: beamLength,
-            thickness: beamThickness,
-          ),
           AnimatedBuilder(
             animation: animation,
             child: FerrisPod(
               height: podHeight,
               width: podWidth,
-              color: color
+              color: podColor
             ),
             builder: (BuildContext context, Widget _widget) {
               return Transform.rotate(
@@ -55,6 +58,13 @@ class FerrisPodSection extends AnimatedWidget {
                 child: _widget
               );
             },
+          ),
+          FerrisPodBeam(
+            color: beamColor,
+            baseColor: baseColor,
+            length: beamLength,
+            completedLength: beamCompletedLength,
+            thickness: beamThickness,
           )
         ],
       )

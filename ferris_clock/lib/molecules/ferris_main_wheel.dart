@@ -34,9 +34,9 @@ class _FerrisMainWheelState extends State<FerrisMainWheel> with SingleTickerProv
   @override
   void initState() {
     super.initState();
-    controller = new AnimationController(
+    controller = AnimationController(
       vsync: this,
-      duration: new Duration(seconds: 60)
+      duration: Duration(seconds: 60)
     );
     animation = Tween<double>(begin: 0, end: radians(360)).animate(controller);
 
@@ -47,6 +47,20 @@ class _FerrisMainWheelState extends State<FerrisMainWheel> with SingleTickerProv
   void dispose() {
     controller.dispose();
     super.dispose();
+  }
+
+  int convertTo12Hour(int value24Hour) {
+    return value24Hour % 12;
+  }
+
+  double getBeamLength(int beamValue, int hour, int minute) {
+    if (beamValue < hour) {
+      return 1.0;
+    } else if (beamValue > hour) {
+      return 0.0;
+    } else {
+      return minute / 60;
+    }
   }
 
   List<Widget> generateFerrisPodSection() {
@@ -61,10 +75,15 @@ class _FerrisMainWheelState extends State<FerrisMainWheel> with SingleTickerProv
       final degreesDiff = 360 / hours.length;
       final degrees = degreesDiff * entry.key;
       final double angleRadians = radians(degrees);
+
+      final value12Hour = convertTo12Hour(widget.hour);
       
       return FerrisPodSection(
-        color: widget.baseColor,
+        baseColor: widget.baseColor,
+        beamColor: Colors.red,
         beamLength: beamLength,
+        beamCompletedLength: getBeamLength(entry.value, value12Hour, widget.minute),
+        podColor: entry.value < value12Hour ? Colors.blue : widget.baseColor,
         podHeight: podHeight,
         podWidth: podWidth,
         angleRadians: angleRadians,
