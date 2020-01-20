@@ -44,10 +44,7 @@ class DigitalClock extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
                     OutlineText(text: hour, borderColor: borderColor),
-                    Opacity(
-                      opacity: now.second % 2 == 1 ? 0.0 : 1.0,
-                      child: OutlineText(text: ':', borderColor: borderColor),
-                    ),
+                    OutlineText(text: ':', borderColor: borderColor),
                     OutlineText(text: minute, borderColor: borderColor),
                   ],
                 ),
