@@ -63,15 +63,15 @@ class _ClockState extends State<Clock> {
   }
 
   void _updateTime() {
-    // setState(() {
-    //   _now = DateTime.now();
-    //   // Update once per second. Make sure to do it at the beginning of each
-    //   // new second, so that the clock is accurate.
-    //   _timer = Timer(
-    //     Duration(seconds: 1) - Duration(milliseconds: _now.millisecond),
-    //     _updateTime,
-    //   );
-    // });
+    setState(() {
+      _now = DateTime.now();
+      // Update once per second. Make sure to do it at the beginning of each
+      // new second, so that the clock is accurate.
+      _timer = Timer(
+        Duration(seconds: 1) - Duration(milliseconds: _now.millisecond),
+        _updateTime,
+      );
+    });
   }
 
   @override
