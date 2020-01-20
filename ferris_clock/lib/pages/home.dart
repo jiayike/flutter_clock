@@ -21,7 +21,7 @@ enum _ClockColors {
 }
 
 final _lightTheme = {
-  _ClockColors.background: Colors.white,
+  _ClockColors.background: Colors.grey[300],
   _ClockColors.baseColor: Colors.black38,
   _ClockColors.hourColor1: Color(0xFFFF9AA2),
   _ClockColors.hourColor2: Color(0xFFFFB7B2),
@@ -64,23 +64,26 @@ class Home extends StatelessWidget {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final customTheme = isDarkMode ? _darkTheme : _lightTheme;
 
-    return Clock(
-      baseColor: customTheme[_ClockColors.baseColor],
-      hourColors: [
-        customTheme[_ClockColors.hourColor1],
-        customTheme[_ClockColors.hourColor2],
-        customTheme[_ClockColors.hourColor3],
-        customTheme[_ClockColors.hourColor4],
-        customTheme[_ClockColors.hourColor5],
-        customTheme[_ClockColors.hourColor6],
-        customTheme[_ClockColors.hourColor7],
-        customTheme[_ClockColors.hourColor8],
-        customTheme[_ClockColors.hourColor9],
-        customTheme[_ClockColors.hourColor10],
-        customTheme[_ClockColors.hourColor11],
-        customTheme[_ClockColors.hourColor12]
-      ],
-      model: model
+    return Container(
+      color: customTheme[_ClockColors.background],
+      child: Clock(
+        baseColor: customTheme[_ClockColors.baseColor],
+        hourColors: [
+          customTheme[_ClockColors.hourColor1],
+          customTheme[_ClockColors.hourColor2],
+          customTheme[_ClockColors.hourColor3],
+          customTheme[_ClockColors.hourColor4],
+          customTheme[_ClockColors.hourColor5],
+          customTheme[_ClockColors.hourColor6],
+          customTheme[_ClockColors.hourColor7],
+          customTheme[_ClockColors.hourColor8],
+          customTheme[_ClockColors.hourColor9],
+          customTheme[_ClockColors.hourColor10],
+          customTheme[_ClockColors.hourColor11],
+          customTheme[_ClockColors.hourColor12]
+        ],
+        model: model
+      )
     );
   }
 }
