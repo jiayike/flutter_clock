@@ -34,11 +34,14 @@ class _FerrisMainWheelState extends State<FerrisMainWheel> with SingleTickerProv
   @override
   void initState() {
     super.initState();
+
+    final double initOffset = 360 / 60 * widget.second;
+
     controller = AnimationController(
       vsync: this,
       duration: Duration(seconds: 60)
     );
-    animation = Tween<double>(begin: 0, end: radians(360)).animate(controller);
+    animation = Tween<double>(begin: radians(0 + initOffset), end: radians(360 + initOffset)).animate(controller);
 
     controller.repeat();
   }
@@ -65,7 +68,7 @@ class _FerrisMainWheelState extends State<FerrisMainWheel> with SingleTickerProv
 
   List<Widget> generateFerrisPodSection() {
 
-    List<int> hours = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+    List<int> hours = [12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 
     final double beamLength = widget.wheelSize;
     final double podHeight = widget.wheelSize * 0.2;
