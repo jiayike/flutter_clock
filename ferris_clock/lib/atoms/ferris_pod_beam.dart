@@ -80,7 +80,7 @@ class _FerrisPodBeamPainter extends CustomPainter {
     );
 
      _paint = Paint()
-      ..strokeWidth = 1
+      ..strokeWidth = 3
       ..shader = gradient.createShader(rect)
       ..style = isFillColor ? PaintingStyle.fill : PaintingStyle.stroke;
 
