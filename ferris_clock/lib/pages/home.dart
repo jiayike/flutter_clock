@@ -165,13 +165,10 @@ class _HomeState extends State<Home> {
                   left: wheelSize / 4,
                   bottom: 0,
                   child: FerrisClock(
-                    baseColor: customTheme[_ClockColors.baseColor],
-                    hourColors: hourColors,
-                    wheelSize: wheelSize,
-                    hour: _now.hour,
-                    minute: _now.minute,
-                    second: _now.second,
-                  )),
+                      now: _now,
+                      wheelSize: wheelSize,
+                      baseColor: customTheme[_ClockColors.baseColor],
+                      hourColors: hourColors)),
               Positioned(
                   right: wheelSize / 10,
                   bottom: deviceHeight / 20,
@@ -179,7 +176,10 @@ class _HomeState extends State<Home> {
                       now: _now,
                       hourColors: hourColors,
                       is24HourFormat: widget.model.is24HourFormat,
-                      fontFamily: _fontFamily)),
+                      fontFamily: _fontFamily,
+                      borderColor: isDarkMode
+                          ? null
+                          : customTheme[_ClockColors.textColor])),
               Positioned(
                   right: wheelSize / 10,
                   top: deviceHeight / 20,

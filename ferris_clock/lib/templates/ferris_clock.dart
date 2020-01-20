@@ -5,25 +5,18 @@ import '../organisms/ferris_main_wheel.dart';
 
 class FerrisClock extends StatelessWidget {
   FerrisClock({
-    @required this.baseColor,
-    this.hourColors,
+    @required this.now,
     @required this.wheelSize,
-    this.hour,
-    this.minute,
-    this.second
+    @required this.baseColor,
+    this.hourColors
   })  : assert(baseColor != null),
         assert(wheelSize != null),
-        assert(hour != null),
-        assert(minute != null),
-        assert(second != null);
+        assert(now != null);
 
+  final DateTime now;
+  final double wheelSize;
   final Color baseColor;
   final List<Color> hourColors;
-  final double wheelSize;
-
-  final int hour;
-  final int minute;
-  final int second;
 
   @override
   Widget build(BuildContext context) {
@@ -42,9 +35,9 @@ class FerrisClock extends StatelessWidget {
           baseColor: baseColor,
           hourColors: hourColors,
           wheelSize: wheelSize,
-          hour: hour,
-          minute: minute,
-          second: second,
+          hour: now.hour,
+          minute: now.minute,
+          second: now.second,
         )
       ],
     );
