@@ -2,6 +2,12 @@
 
 First implementation of a Flutter project for the Flutter Clock Challenge [flutter.dev/clock](https://flutter.dev/clock). Please forgive me for the noob codes >.<
 
+## Features
+- Each beam represents the hour hand
+- When the pod is lit, it means the hour has passed
+- Minutes is shown on the beam as gradient
+- The wheel rotation represents seconds
+
 Light mode
 
 <img src='light.png' width='350'>
