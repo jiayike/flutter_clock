@@ -34,19 +34,19 @@ class FerrisPod extends StatelessWidget {
 class _FerrisPodPainter extends CustomPainter {
   _FerrisPodPainter({
     @required this.color
-  })  : assert(color != null);
+  })  : assert(color != null) {
+    _border = Paint()
+      ..color = Colors.black
+      ..strokeWidth = 1
+      ..style = PaintingStyle.stroke;
+  }
 
   final Color color;
 
   Paint _paint;
-  
-  @override
-  void paint(Canvas canvas, Size size) {
-    _paint = Paint()
-      ..color = this.color
-      ..strokeWidth = 1
-      ..style = PaintingStyle.fill;
+  Paint _border;
 
+  void paintPodTop(Canvas canvas, Size size, bool useCenter, Paint paint) {
     canvas.drawArc(
       Rect.fromCenter(
         center: Offset(size.width / 2, size.height / 2),
@@ -55,13 +55,30 @@ class _FerrisPodPainter extends CustomPainter {
       ),
       math.pi,
       math.pi,
-      false,
-      _paint,
+      useCenter,
+      paint,
     );
+  }
+
+  void paintPodBottom(Canvas canvas, Size size, Paint paint) {
     canvas.drawRect(
       Rect.fromLTRB(size.width * 0.1, size.height * 0.6, size.width * 0.9, size.height),
-      _paint
+      paint
     );
+  }
+  
+  @override
+  void paint(Canvas canvas, Size size) {
+    _paint = Paint()
+      ..color = this.color
+      ..strokeWidth = 1
+      ..style = PaintingStyle.fill;
+
+    paintPodTop(canvas, size, false, _paint);
+    paintPodTop(canvas, size, true, _border);
+
+    paintPodBottom(canvas, size, _paint);
+    paintPodBottom(canvas, size, _border);
   }
 
   @override
