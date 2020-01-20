@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../atoms/outline_text.dart';
+
 class DigitalClock extends StatelessWidget {
-  const DigitalClock({
-    @required this.now,
-    this.hourColors,
-    this.is24HourFormat = false,
-    this.fontFamily,
-  }) : assert(now != null);
+  const DigitalClock(
+      {@required this.now,
+      this.hourColors,
+      this.is24HourFormat = false,
+      this.fontFamily,
+      this.borderColor})
+      : assert(now != null);
 
   final DateTime now;
   final List<Color> hourColors;
   final bool is24HourFormat;
   final String fontFamily;
+  final Color borderColor;
 
   @override
   Widget build(BuildContext context) {
@@ -20,38 +24,34 @@ class DigitalClock extends StatelessWidget {
     final hour = DateFormat(is24HourFormat ? 'HH' : 'hh').format(now);
     final minute = DateFormat('mm').format(now);
     final second = DateFormat('ss').format(now);
+    final amPm = now.hour < 12 ? 'AM' : 'PM';
+
     final fontSize = MediaQuery.of(context).size.width / 20;
     final secondFontSize = fontSize / 3;
 
-    final defaultStyle = TextStyle(
-      fontFamily: fontFamily,
-      fontSize: fontSize,
-      foreground: Paint()
-        ..style = PaintingStyle.stroke
-        ..strokeWidth = 1
-        ..color = color,
-    );
+    final defaultStyle =
+        TextStyle(color: color, fontFamily: fontFamily, fontSize: fontSize);
 
     return Center(
+        child: DefaultTextStyle(
+      style: defaultStyle,
       child: Column(children: <Widget>[
-        DefaultTextStyle(
-          style: defaultStyle,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              Text(hour),
-              Opacity(
-                opacity: now.second % 2 == 1 ? 0.0 : 1.0,
-                child: Text(':'),
-              ),
-              Text(minute),
-            ],
-          ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            OutlineText(text: hour, borderColor: borderColor),
+            Opacity(
+              opacity: now.second % 2 == 1 ? 0.0 : 1.0,
+              child: OutlineText(text: ':', borderColor: borderColor),
+            ),
+            OutlineText(text: minute, borderColor: borderColor),
+          ],
         ),
-        DefaultTextStyle(
+        OutlineText(
+            text: second,
             style: defaultStyle.copyWith(fontSize: secondFontSize),
-            child: Text(second))
+            borderColor: borderColor)
       ]),
-    );
+    ));
   }
 }
