@@ -1,6 +1,8 @@
 # Ferris Clock
 
-First implementation of a Flutter project for the Flutter Clock Challenge [flutter.dev/clock](https://flutter.dev/clock). Please forgive me for the noob codes >.<
+First implementation of a Flutter project for the Flutter Clock Challenge [flutter.dev/clock](https://flutter.dev/clock). 
+
+Please forgive me for the noob codes >.<
 
 ## Features
 - Each beam represents the hour hand
