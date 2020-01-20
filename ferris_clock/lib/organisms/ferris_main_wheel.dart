@@ -74,28 +74,34 @@ class _FerrisMainWheelState extends State<FerrisMainWheel> with SingleTickerProv
     }
   }
 
+  bool getBeamActive(int beamValue, int hour, int minute) {
+    return beamValue <= hour || (hour == 0 && minute == 0);
+  }
+
   List<Widget> generateFerrisPodSection() {
 
-    List<int> hours = [12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+    List<int> beamValues = [12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 
     final double beamLength = widget.wheelSize;
     final double podHeight = widget.wheelSize * 0.2;
     final double podWidth = podHeight * 0.8;
 
-    return hours.asMap().entries.map((MapEntry entry) {
-      final double degreesDiff = 360 / hours.length;
+    return beamValues.asMap().entries.map((MapEntry entry) {
+      final double degreesDiff = 360 / beamValues.length;
       final double degrees = degreesDiff * entry.key;
       final double angleRadians = radians(degrees);
 
       final value12Hour = convertTo12Hour(widget.hour);
       final Color beamColor = getBeamColor(entry.value, widget.hourColors);
+
+      final isBeamActive = getBeamActive(entry.value, value12Hour, widget.minute);
       
       return FerrisPodSection(
         baseColor: widget.baseColor,
         beamColor: beamColor,
         beamLength: beamLength,
-        beamCompletedLength: getBeamLength(entry.value, value12Hour, widget.minute),
-        podColor: entry.value <= value12Hour ? beamColor : widget.baseColor,
+        beamCompletedLength: isBeamActive ? 1.0 : getBeamLength(entry.value, value12Hour, widget.minute),
+        podColor: isBeamActive ? beamColor : widget.baseColor,
         podHeight: podHeight,
         podWidth: podWidth,
         angleRadians: angleRadians,
