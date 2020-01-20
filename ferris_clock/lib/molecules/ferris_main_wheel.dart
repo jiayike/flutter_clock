@@ -8,6 +8,7 @@ class FerrisMainWheel extends StatefulWidget {
   FerrisMainWheel({
     @required this.wheelSize,
     @required this.baseColor,
+    this.hourColors,
     @required this.hour,
     @required this.minute,
     @required this.second
@@ -16,6 +17,7 @@ class FerrisMainWheel extends StatefulWidget {
       
   final double wheelSize;
   final Color baseColor;
+  final List<Color> hourColors;
 
   final int hour;
   final int minute;
@@ -56,10 +58,16 @@ class _FerrisMainWheelState extends State<FerrisMainWheel> with SingleTickerProv
     return value24Hour % 12;
   }
 
+  Color getBeamColor(int hour, List<Color> colors) {
+    final int colorCount = colors.length;
+
+    return colors[hour % colorCount];
+  }
+
   double getBeamLength(int beamValue, int hour, int minute) {
-    if (beamValue < hour) {
+    if (beamValue <= hour) {
       return 1.0;
-    } else if (beamValue > hour) {
+    } else if (beamValue > hour + 1) {
       return 0.0;
     } else {
       return minute / 60;
@@ -75,18 +83,19 @@ class _FerrisMainWheelState extends State<FerrisMainWheel> with SingleTickerProv
     final double podWidth = podHeight * 0.8;
 
     return hours.asMap().entries.map((MapEntry entry) {
-      final degreesDiff = 360 / hours.length;
-      final degrees = degreesDiff * entry.key;
+      final double degreesDiff = 360 / hours.length;
+      final double degrees = degreesDiff * entry.key;
       final double angleRadians = radians(degrees);
 
       final value12Hour = convertTo12Hour(widget.hour);
+      final Color beamColor = getBeamColor(entry.value, widget.hourColors);
       
       return FerrisPodSection(
         baseColor: widget.baseColor,
-        beamColor: Colors.red,
+        beamColor: beamColor,
         beamLength: beamLength,
         beamCompletedLength: getBeamLength(entry.value, value12Hour, widget.minute),
-        podColor: entry.value < value12Hour ? Colors.blue : widget.baseColor,
+        podColor: entry.value <= value12Hour ? beamColor : widget.baseColor,
         podHeight: podHeight,
         podWidth: podWidth,
         angleRadians: angleRadians,

@@ -61,11 +61,25 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final customTheme = Theme.of(context).brightness == Brightness.light
-      ? _lightTheme : _darkTheme;
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final customTheme = isDarkMode ? _darkTheme : _lightTheme;
 
     return Clock(
       baseColor: customTheme[_ClockColors.baseColor],
+      hourColors: [
+        customTheme[_ClockColors.hourColor1],
+        customTheme[_ClockColors.hourColor2],
+        customTheme[_ClockColors.hourColor3],
+        customTheme[_ClockColors.hourColor4],
+        customTheme[_ClockColors.hourColor5],
+        customTheme[_ClockColors.hourColor6],
+        customTheme[_ClockColors.hourColor7],
+        customTheme[_ClockColors.hourColor8],
+        customTheme[_ClockColors.hourColor9],
+        customTheme[_ClockColors.hourColor10],
+        customTheme[_ClockColors.hourColor11],
+        customTheme[_ClockColors.hourColor12]
+      ],
       model: model
     );
   }

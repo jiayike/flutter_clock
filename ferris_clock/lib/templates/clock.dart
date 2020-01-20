@@ -10,10 +10,12 @@ import '../organisms/ferris_clock.dart';
 class Clock extends StatefulWidget {
   Clock({
     @required this.baseColor,
+    this.hourColors,
     this.model
   })  : assert(baseColor != null);
 
   final Color baseColor;
+  final List<Color> hourColors;
   final ClockModel model;
 
   @override
@@ -95,6 +97,7 @@ class _ClockState extends State<Clock> {
               bottom: 0,
               child: FerrisClock(
                 baseColor: widget.baseColor,
+                hourColors: widget.hourColors,
                 wheelSize: wheelSize,
                 hour: _now.hour,
                 minute: _now.minute,

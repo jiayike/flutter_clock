@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class FerrisPodBeam extends StatelessWidget {
@@ -20,6 +22,8 @@ class FerrisPodBeam extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool isLightMode = Theme.of(context).brightness == Brightness.light;
+
     return Center(
       child: SizedBox(
         height: length,
@@ -28,7 +32,8 @@ class FerrisPodBeam extends StatelessWidget {
           painter: _FerrisPodBeamPainter(
             color: color,
             baseColor: baseColor,
-            completedLength: completedLength
+            completedLength: completedLength,
+            isFillColor: isLightMode
           ),
         ),
       ),
@@ -37,20 +42,21 @@ class FerrisPodBeam extends StatelessWidget {
 }
 
 class _FerrisPodBeamPainter extends CustomPainter {
+  _FerrisPodBeamPainter({
+    @required this.color,
+    @required this.baseColor,
+    @required this.completedLength,
+    this.isFillColor = false
+  })  : assert(color != null),
+        assert(baseColor != null),
+        assert(completedLength != null);
 
   final Color color;
   final Color baseColor;
   final double completedLength;
+  final bool isFillColor;
 
   Paint _paint;
-
-  _FerrisPodBeamPainter({
-    @required this.color,
-    @required this.baseColor,
-    @required this.completedLength
-  })  : assert(color != null),
-        assert(baseColor != null),
-        assert(completedLength != null);
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -58,8 +64,8 @@ class _FerrisPodBeamPainter extends CustomPainter {
 
     final Gradient gradient = LinearGradient(
       colors: <Color>[
-        color.withOpacity(0.3),
-        color.withOpacity(completedLength),
+        color.withOpacity(0.5),
+        color.withOpacity(min(completedLength, 0.8)),
         baseColor,
         baseColor
       ],
@@ -76,16 +82,17 @@ class _FerrisPodBeamPainter extends CustomPainter {
      _paint = Paint()
       ..strokeWidth = 1
       ..shader = gradient.createShader(rect)
-      ..style = PaintingStyle.fill;
+      ..style = isFillColor ? PaintingStyle.fill : PaintingStyle.stroke;
 
     canvas.drawPath(getFerrisPodBeamPath(size.width, size.height), _paint);
   }
 
   Path getFerrisPodBeamPath(double x, double y) {
     return Path()
-      ..moveTo(x / 2, y / 2)
+      ..moveTo(x / 4, y / 2)
       ..lineTo(x, 0)
-      ..lineTo(0, 0);
+      ..lineTo(0, 0)
+      ..lineTo(x / 4, y / 2);
   }
 
   @override
