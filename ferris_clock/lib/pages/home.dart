@@ -1,7 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/semantics.dart';
+import 'package:intl/intl.dart';
 import 'package:flutter_clock_helper/model.dart';
 
-import '../templates/clock.dart';
+import '../templates/ferris_clock.dart';
 
 enum _ClockColors {
   background,
@@ -20,9 +24,9 @@ enum _ClockColors {
   hourColor12
 }
 
-final _lightTheme = {
+final lightTheme = {
   _ClockColors.background: Colors.grey[300],
-  _ClockColors.baseColor: Colors.black38,
+  _ClockColors.baseColor: Colors.black26,
   _ClockColors.hourColor1: Color(0xFFFF9AA2),
   _ClockColors.hourColor2: Color(0xFFFFB7B2),
   _ClockColors.hourColor3: Color(0xFFFFDAC1),
@@ -37,7 +41,7 @@ final _lightTheme = {
   _ClockColors.hourColor12: Color(0xFFFFFCC3)
 };
 
-final _darkTheme = {
+final darkTheme = {
   _ClockColors.background: Colors.black,
   _ClockColors.baseColor: Colors.white24,
   _ClockColors.hourColor1: Color(0xFFFF9AA2),
@@ -54,36 +58,112 @@ final _darkTheme = {
   _ClockColors.hourColor12: Color(0xFFFFFCC3)
 };
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   Home(this.model);
 
   final ClockModel model;
 
   @override
-  Widget build(BuildContext context) {
-    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
-    final customTheme = isDarkMode ? _darkTheme : _lightTheme;
+  _HomeState createState() => new _HomeState();
+}
 
-    return Container(
-      color: customTheme[_ClockColors.background],
-      child: Clock(
-        baseColor: customTheme[_ClockColors.baseColor],
-        hourColors: [
-          customTheme[_ClockColors.hourColor1],
-          customTheme[_ClockColors.hourColor2],
-          customTheme[_ClockColors.hourColor3],
-          customTheme[_ClockColors.hourColor4],
-          customTheme[_ClockColors.hourColor5],
-          customTheme[_ClockColors.hourColor6],
-          customTheme[_ClockColors.hourColor7],
-          customTheme[_ClockColors.hourColor8],
-          customTheme[_ClockColors.hourColor9],
-          customTheme[_ClockColors.hourColor10],
-          customTheme[_ClockColors.hourColor11],
-          customTheme[_ClockColors.hourColor12]
-        ],
-        model: model
-      )
-    );
+class _HomeState extends State<Home> {
+  var _now = DateTime.now();
+  var _temperature = '';
+  var _temperatureRange = '';
+  var _condition = '';
+  var _location = '';
+  Timer _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    widget.model.addListener(_updateModel);
+    // Set the initial values.
+    _updateTime();
+    _updateModel();
+  }
+
+  @override
+  void didUpdateWidget(Home oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.model != oldWidget.model) {
+      oldWidget.model.removeListener(_updateModel);
+      widget.model.addListener(_updateModel);
+    }
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    widget.model.removeListener(_updateModel);
+    super.dispose();
+  }
+
+  void _updateModel() {
+    // setState(() {
+    //   _temperature = widget.model.temperatureString;
+    //   _temperatureRange = '(${widget.model.low} - ${widget.model.highString})';
+    //   _condition = widget.model.weatherString;
+    //   _location = widget.model.location;
+    // });
+  }
+
+  void _updateTime() {
+    setState(() {
+      _now = DateTime.now();
+      // Update once per second. Make sure to do it at the beginning of each
+      // new second, so that the clock is accurate.
+      _timer = Timer(
+        Duration(seconds: 1) - Duration(milliseconds: _now.millisecond),
+        _updateTime,
+      );
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final time = DateFormat.Hms().format(DateTime.now());
+    final double deviceHeight = MediaQuery.of(context).size.height;
+    // final double deviceWidth = MediaQuery.of(context).size.width;
+    final double wheelSize = deviceHeight / 1.5;
+
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final customTheme = isDarkMode ? darkTheme : lightTheme;
+
+    return Semantics.fromProperties(
+        properties: SemanticsProperties(
+          label: 'Flutter clock with time $time',
+          value: time,
+        ),
+        child: Container(
+            color: customTheme[_ClockColors.background],
+            child: Stack(children: <Widget>[
+              Container(),
+              Positioned(
+                  left: wheelSize / 4,
+                  bottom: 0,
+                  child: FerrisClock(
+                    baseColor: customTheme[_ClockColors.baseColor],
+                    hourColors: [
+                      customTheme[_ClockColors.hourColor1],
+                      customTheme[_ClockColors.hourColor2],
+                      customTheme[_ClockColors.hourColor3],
+                      customTheme[_ClockColors.hourColor4],
+                      customTheme[_ClockColors.hourColor5],
+                      customTheme[_ClockColors.hourColor6],
+                      customTheme[_ClockColors.hourColor7],
+                      customTheme[_ClockColors.hourColor8],
+                      customTheme[_ClockColors.hourColor9],
+                      customTheme[_ClockColors.hourColor10],
+                      customTheme[_ClockColors.hourColor11],
+                      customTheme[_ClockColors.hourColor12]
+                    ],
+                    wheelSize: wheelSize,
+                    hour: _now.hour,
+                    minute: _now.minute,
+                    second: _now.second,
+                  ))
+            ])));
   }
 }
