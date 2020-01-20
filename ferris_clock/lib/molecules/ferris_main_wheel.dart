@@ -113,15 +113,15 @@ class _FerrisMainWheelState extends State<FerrisMainWheel> with SingleTickerProv
     children.add(
       HollowCircle(
         color: widget.baseColor,
-        thickness: 5,
-        size: widget.wheelSize
+        thickness: 2,
+        size: innerWheelSize
       )
     );
     children.add(
       HollowCircle(
         color: widget.baseColor,
-        thickness: 2,
-        size: innerWheelSize
+        thickness: 5,
+        size: widget.wheelSize
       )
     );
 
