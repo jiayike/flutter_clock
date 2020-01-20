@@ -39,7 +39,7 @@ final _lightTheme = {
 
 final _darkTheme = {
   _ClockColors.background: Colors.black,
-  _ClockColors.baseColor: Colors.white70,
+  _ClockColors.baseColor: Colors.white24,
   _ClockColors.hourColor1: Color(0xFFFF9AA2),
   _ClockColors.hourColor2: Color(0xFFFFB7B2),
   _ClockColors.hourColor3: Color(0xFFFFDAC1),
