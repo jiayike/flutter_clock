@@ -34,24 +34,41 @@ class DigitalClock extends StatelessWidget {
 
     return Center(
         child: DefaultTextStyle(
-      style: defaultStyle,
-      child: Column(children: <Widget>[
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+        style: defaultStyle,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            OutlineText(text: hour, borderColor: borderColor),
-            Opacity(
-              opacity: now.second % 2 == 1 ? 0.0 : 1.0,
-              child: OutlineText(text: ':', borderColor: borderColor),
+            Column(
+              children: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    OutlineText(text: hour, borderColor: borderColor),
+                    Opacity(
+                      opacity: now.second % 2 == 1 ? 0.0 : 1.0,
+                      child: OutlineText(text: ':', borderColor: borderColor),
+                    ),
+                    OutlineText(text: minute, borderColor: borderColor),
+                  ],
+                ),
+                OutlineText(
+                  text: second,
+                  style: defaultStyle.copyWith(fontSize: secondFontSize),
+                  borderColor: borderColor
+                )
+              ]
             ),
-            OutlineText(text: minute, borderColor: borderColor),
-          ],
-        ),
-        OutlineText(
-            text: second,
-            style: defaultStyle.copyWith(fontSize: secondFontSize),
-            borderColor: borderColor)
-      ]),
-    ));
+            Opacity(
+              opacity: is24HourFormat ? 0.0 : 1.0,
+              child: OutlineText(
+                text: ' ' + amPm,
+                style: defaultStyle.copyWith(fontSize: secondFontSize),
+                borderColor: borderColor
+              )
+            ),
+          ]
+        )
+      )
+    );
   }
 }
