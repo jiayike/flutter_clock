@@ -33,6 +33,11 @@ class FerrisClock extends StatelessWidget {
     return Stack(
       alignment: Alignment.center,
       children: <Widget>[
+        FerrisSupport(
+          color: baseColor,
+          height: ferrisSupportHeight,
+          width: ferrisSupportWidth
+        ),
         FerrisMainWheel(
           baseColor: baseColor,
           hourColors: hourColors,
@@ -40,11 +45,6 @@ class FerrisClock extends StatelessWidget {
           hour: hour,
           minute: minute,
           second: second,
-        ),
-        FerrisSupport(
-          color: baseColor,
-          height: ferrisSupportHeight,
-          width: ferrisSupportWidth
         )
       ],
     );
