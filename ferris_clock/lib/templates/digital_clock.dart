@@ -1,55 +1,57 @@
-// // Copyright 2019 The Chromium Authors. All rights reserved.
-// // Use of this source code is governed by a BSD-style license that can be
-// // found in the LICENSE file.
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
-// import 'dart:async';
+class DigitalClock extends StatelessWidget {
+  const DigitalClock({
+    @required this.now,
+    this.hourColors,
+    this.is24HourFormat = false,
+    this.fontFamily,
+  }) : assert(now != null);
 
-// import 'package:flutter_clock_helper/model.dart';
-// import 'package:flutter/material.dart';
-// import 'package:intl/intl.dart';
+  final DateTime now;
+  final List<Color> hourColors;
+  final bool is24HourFormat;
+  final String fontFamily;
 
-// /// A basic digital clock.
-// ///
-// /// You can do better than this!
-// class DigitalClock extends StatelessWidget {
-//   const DigitalClock();
+  @override
+  Widget build(BuildContext context) {
+    final color = hourColors[now.hour % hourColors.length];
+    final hour = DateFormat(is24HourFormat ? 'HH' : 'hh').format(now);
+    final minute = DateFormat('mm').format(now);
+    final second = DateFormat('ss').format(now);
+    final fontSize = MediaQuery.of(context).size.width / 20;
+    final secondFontSize = fontSize / 3;
 
-//   @override
-//   Widget build(BuildContext context) {
-//     final colors = Theme.of(context).brightness == Brightness.light
-//         ? _lightTheme
-//         : _darkTheme;
-//     final hour =
-//         DateFormat(widget.model.is24HourFormat ? 'HH' : 'hh').format(_dateTime);
-//     final minute = DateFormat('mm').format(_dateTime);
-//     final fontSize = MediaQuery.of(context).size.width / 3.5;
-//     final offset = -fontSize / 7;
-//     final defaultStyle = TextStyle(
-//       color: colors[_Element.text],
-//       fontFamily: 'PressStart2P',
-//       fontSize: fontSize,
-//       shadows: [
-//         Shadow(
-//           blurRadius: 0,
-//           color: colors[_Element.shadow],
-//           offset: Offset(10, 0),
-//         ),
-//       ],
-//     );
+    final defaultStyle = TextStyle(
+      fontFamily: fontFamily,
+      fontSize: fontSize,
+      foreground: Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 1
+        ..color = color,
+    );
 
-//     return Container(
-//       color: colors[_Element.background],
-//       child: Center(
-//         child: DefaultTextStyle(
-//           style: defaultStyle,
-//           child: Stack(
-//             children: <Widget>[
-//               Positioned(left: offset, top: 0, child: Text(hour)),
-//               Positioned(right: offset, bottom: offset, child: Text(minute)),
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
+    return Center(
+      child: Column(children: <Widget>[
+        DefaultTextStyle(
+          style: defaultStyle,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              Text(hour),
+              Opacity(
+                opacity: now.second % 2 == 1 ? 0.0 : 1.0,
+                child: Text(':'),
+              ),
+              Text(minute),
+            ],
+          ),
+        ),
+        DefaultTextStyle(
+            style: defaultStyle.copyWith(fontSize: secondFontSize),
+            child: Text(second))
+      ]),
+    );
+  }
+}
