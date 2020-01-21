@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 
 class FerrisSupport extends StatelessWidget {
-  FerrisSupport({
-    @required this.color,
-    @required this.height,
-    @required this.width
-  })  : assert(color != null),
+  FerrisSupport(
+      {@required this.color, @required this.height, @required this.width})
+      : assert(color != null),
         assert(height != null),
         assert(width != null);
 
@@ -20,9 +18,7 @@ class FerrisSupport extends StatelessWidget {
         height: height,
         width: width,
         child: CustomPaint(
-          painter: _FerrisSupportPainter(
-            color: color
-          ),
+          painter: _FerrisSupportPainter(color: color),
         ),
       ),
     );
@@ -30,9 +26,7 @@ class FerrisSupport extends StatelessWidget {
 }
 
 class _FerrisSupportPainter extends CustomPainter {
-  _FerrisSupportPainter({
-    @required this.color
-  })  : assert(color != null);
+  _FerrisSupportPainter({@required this.color}) : assert(color != null);
 
   final Color color;
 
@@ -49,14 +43,8 @@ class _FerrisSupportPainter extends CustomPainter {
   }
 
   Path getFerrisSupportPath(double x, double y) {
-    final Map topLeftCutoff = {
-      x: x * 1/4,
-      y: y * 1/2
-    };
-    final Map topRightCutoff = {
-      x: x * 3/4,
-      y: y * 1/2
-    };
+    final Map topLeftCutoff = {x: x * 1 / 4, y: y * 1 / 2};
+    final Map topRightCutoff = {x: x * 3 / 4, y: y * 1 / 2};
 
     return Path()
       ..moveTo(0, y)

@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 
 class HollowCircle extends StatelessWidget {
-  HollowCircle({
-    @required this.color,
-    @required this.thickness,
-    @required this.size
-  })  : assert(color != null),
+  HollowCircle(
+      {@required this.color, @required this.thickness, @required this.size})
+      : assert(color != null),
         assert(thickness != null),
         assert(size != null);
 
@@ -20,10 +18,7 @@ class HollowCircle extends StatelessWidget {
         height: size,
         width: size,
         child: CustomPaint(
-          painter: _HollowCirclePainter(
-            color: color,
-            strokeWidth: thickness
-          ),
+          painter: _HollowCirclePainter(color: color, strokeWidth: thickness),
         ),
       ),
     );

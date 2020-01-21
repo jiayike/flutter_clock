@@ -5,16 +5,16 @@ import '../atoms/hollow_circle.dart';
 import '../molecules/ferris_pod_section.dart';
 
 class FerrisMainWheel extends StatefulWidget {
-  FerrisMainWheel({
-    @required this.wheelSize,
-    @required this.baseColor,
-    this.hourColors,
-    @required this.hour,
-    @required this.minute,
-    @required this.second
-  })  : assert(wheelSize != null),
+  FerrisMainWheel(
+      {@required this.wheelSize,
+      @required this.baseColor,
+      this.hourColors,
+      @required this.hour,
+      @required this.minute,
+      @required this.second})
+      : assert(wheelSize != null),
         assert(baseColor != null);
-      
+
   final double wheelSize;
   final Color baseColor;
   final List<Color> hourColors;
@@ -27,7 +27,8 @@ class FerrisMainWheel extends StatefulWidget {
   _FerrisMainWheelState createState() => new _FerrisMainWheelState();
 }
 
-class _FerrisMainWheelState extends State<FerrisMainWheel> with SingleTickerProviderStateMixin {
+class _FerrisMainWheelState extends State<FerrisMainWheel>
+    with SingleTickerProviderStateMixin {
   final int _innerWheelScale = 2;
 
   Animation<double> animation;
@@ -39,11 +40,11 @@ class _FerrisMainWheelState extends State<FerrisMainWheel> with SingleTickerProv
 
     final double initOffset = 360 / 60 * widget.second;
 
-    controller = AnimationController(
-      vsync: this,
-      duration: Duration(seconds: 60)
-    );
-    animation = Tween<double>(begin: radians(0 + initOffset), end: radians(360 + initOffset)).animate(controller);
+    controller =
+        AnimationController(vsync: this, duration: Duration(seconds: 60));
+    animation = Tween<double>(
+            begin: radians(0 + initOffset), end: radians(360 + initOffset))
+        .animate(controller);
 
     controller.repeat();
   }
@@ -79,7 +80,6 @@ class _FerrisMainWheelState extends State<FerrisMainWheel> with SingleTickerProv
   }
 
   List<Widget> generateFerrisPodSection() {
-
     List<int> beamValues = [12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 
     final double beamLength = widget.wheelSize;
@@ -94,19 +94,21 @@ class _FerrisMainWheelState extends State<FerrisMainWheel> with SingleTickerProv
       final value12Hour = convertTo12Hour(widget.hour);
       final Color beamColor = getBeamColor(entry.value, widget.hourColors);
 
-      final isBeamActive = getBeamActive(entry.value, value12Hour, widget.minute);
-      
+      final isBeamActive =
+          getBeamActive(entry.value, value12Hour, widget.minute);
+
       return FerrisPodSection(
-        baseColor: widget.baseColor,
-        beamColor: beamColor,
-        beamLength: beamLength,
-        beamCompletedLength: isBeamActive ? 1.0 : getBeamLength(entry.value, value12Hour, widget.minute),
-        podColor: isBeamActive ? beamColor : widget.baseColor,
-        podHeight: podHeight,
-        podWidth: podWidth,
-        angleRadians: angleRadians,
-        animation: animation
-      );
+          baseColor: widget.baseColor,
+          beamColor: beamColor,
+          beamLength: beamLength,
+          beamCompletedLength: isBeamActive
+              ? 1.0
+              : getBeamLength(entry.value, value12Hour, widget.minute),
+          podColor: isBeamActive ? beamColor : widget.baseColor,
+          podHeight: podHeight,
+          podWidth: podWidth,
+          angleRadians: angleRadians,
+          animation: animation);
     }).toList();
   }
 
@@ -116,27 +118,14 @@ class _FerrisMainWheelState extends State<FerrisMainWheel> with SingleTickerProv
 
     List<Widget> children = new List();
     children.addAll(generateFerrisPodSection());
-    children.add(
-      HollowCircle(
-        color: widget.baseColor,
-        thickness: 2,
-        size: innerWheelSize
-      )
-    );
-    children.add(
-      HollowCircle(
-        color: widget.baseColor,
-        thickness: 5,
-        size: widget.wheelSize
-      )
-    );
+    children.add(HollowCircle(
+        color: widget.baseColor, thickness: 2, size: innerWheelSize));
+    children.add(HollowCircle(
+        color: widget.baseColor, thickness: 5, size: widget.wheelSize));
 
     return AnimatedBuilder(
       animation: animation,
-      child: Stack(
-        alignment: Alignment.center,
-        children: children
-      ),
+      child: Stack(alignment: Alignment.center, children: children),
       builder: (BuildContext context, Widget _widget) {
         return Transform.rotate(
           angle: animation.value,

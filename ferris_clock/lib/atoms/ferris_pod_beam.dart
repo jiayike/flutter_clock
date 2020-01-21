@@ -30,11 +30,10 @@ class FerrisPodBeam extends StatelessWidget {
         width: thickness,
         child: CustomPaint(
           painter: _FerrisPodBeamPainter(
-            color: color,
-            baseColor: baseColor,
-            completedLength: completedLength,
-            isFillColor: isLightMode
-          ),
+              color: color,
+              baseColor: baseColor,
+              completedLength: completedLength,
+              isFillColor: isLightMode),
         ),
       ),
     );
@@ -42,12 +41,12 @@ class FerrisPodBeam extends StatelessWidget {
 }
 
 class _FerrisPodBeamPainter extends CustomPainter {
-  _FerrisPodBeamPainter({
-    @required this.color,
-    @required this.baseColor,
-    @required this.completedLength,
-    this.isFillColor = false
-  })  : assert(color != null),
+  _FerrisPodBeamPainter(
+      {@required this.color,
+      @required this.baseColor,
+      @required this.completedLength,
+      this.isFillColor = false})
+      : assert(color != null),
         assert(baseColor != null),
         assert(completedLength != null);
 
@@ -62,24 +61,19 @@ class _FerrisPodBeamPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final Rect rect = Offset.zero & size;
 
-    final Gradient gradient = LinearGradient(
-      colors: <Color>[
-        color.withOpacity(0.5),
-        color.withOpacity(min(completedLength, 0.8)),
-        baseColor,
-        baseColor
-      ],
-      stops: [
-        0.0,
-        completedLength,
-        completedLength,
-        1.0
-      ],
-      begin: Alignment.center,
-      end: Alignment.topCenter
-    );
+    final Gradient gradient = LinearGradient(colors: <Color>[
+      color.withOpacity(0.5),
+      color.withOpacity(min(completedLength, 0.8)),
+      baseColor,
+      baseColor
+    ], stops: [
+      0.0,
+      completedLength,
+      completedLength,
+      1.0
+    ], begin: Alignment.center, end: Alignment.topCenter);
 
-     _paint = Paint()
+    _paint = Paint()
       ..strokeWidth = 3
       ..shader = gradient.createShader(rect)
       ..style = isFillColor ? PaintingStyle.fill : PaintingStyle.stroke;

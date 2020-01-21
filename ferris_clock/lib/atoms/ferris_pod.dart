@@ -3,11 +3,8 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
 class FerrisPod extends StatelessWidget {
-  FerrisPod({
-    @required this.color,
-    @required this.height,
-    @required this.width
-  })  : assert(color != null),
+  FerrisPod({@required this.color, @required this.height, @required this.width})
+      : assert(color != null),
         assert(height != null),
         assert(width != null);
 
@@ -22,9 +19,7 @@ class FerrisPod extends StatelessWidget {
         height: height,
         width: width,
         child: CustomPaint(
-          painter: _FerrisPodPainter(
-            color: color
-          ),
+          painter: _FerrisPodPainter(color: color),
         ),
       ),
     );
@@ -32,9 +27,7 @@ class FerrisPod extends StatelessWidget {
 }
 
 class _FerrisPodPainter extends CustomPainter {
-  _FerrisPodPainter({
-    @required this.color
-  })  : assert(color != null) {
+  _FerrisPodPainter({@required this.color}) : assert(color != null) {
     _border = Paint()
       ..color = Colors.black
       ..strokeWidth = 1
@@ -62,11 +55,11 @@ class _FerrisPodPainter extends CustomPainter {
 
   void paintPodBottom(Canvas canvas, Size size, Paint paint) {
     canvas.drawRect(
-      Rect.fromLTRB(size.width * 0.1, size.height * 0.6, size.width * 0.9, size.height),
-      paint
-    );
+        Rect.fromLTRB(
+            size.width * 0.1, size.height * 0.6, size.width * 0.9, size.height),
+        paint);
   }
-  
+
   @override
   void paint(Canvas canvas, Size size) {
     _paint = Paint()

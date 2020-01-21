@@ -4,12 +4,12 @@ import '../atoms/ferris_support.dart';
 import '../organisms/ferris_main_wheel.dart';
 
 class FerrisClock extends StatelessWidget {
-  FerrisClock({
-    @required this.now,
-    @required this.wheelSize,
-    @required this.baseColor,
-    this.hourColors
-  })  : assert(baseColor != null),
+  FerrisClock(
+      {@required this.now,
+      @required this.wheelSize,
+      @required this.baseColor,
+      this.hourColors})
+      : assert(baseColor != null),
         assert(wheelSize != null),
         assert(now != null);
 
@@ -27,10 +27,9 @@ class FerrisClock extends StatelessWidget {
       alignment: Alignment.center,
       children: <Widget>[
         FerrisSupport(
-          color: baseColor,
-          height: ferrisSupportHeight,
-          width: ferrisSupportWidth
-        ),
+            color: baseColor,
+            height: ferrisSupportHeight,
+            width: ferrisSupportWidth),
         FerrisMainWheel(
           baseColor: baseColor,
           hourColors: hourColors,
