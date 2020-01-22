@@ -26,8 +26,9 @@ Demo
 
 From design idea to actual working clock!
 
-<img src='ferris wheel mockup 1.jpeg' width='350'>
-<img src='ferris wheel mockup 2.jpeg' width='350'>
+Ferris Clock Skeleton            |  Ferris Clock
+:-------------------------------:|:------------------------------:
+![](ferris wheel mockup 1.jpeg)  |  ![](ferris wheel mockup 2.jpeg)
 
 ## TODOs:
 
