@@ -26,9 +26,7 @@ Demo
 
 From design idea to actual working clock!
 
-Ferris Clock Skeleton            |  Ferris Clock
-:-------------------------------:|:------------------------------:
-![](ferris wheel mockup 1.jpeg)  |  ![](ferris wheel mockup 2.jpeg)
+<img src='mockup1.jpeg' width='200'>&nbsp;&nbsp;&nbsp;&nbsp;<img src='mockup2.jpeg' width='200'>
 
 ## TODOs:
 
