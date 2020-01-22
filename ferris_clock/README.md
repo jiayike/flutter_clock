@@ -22,6 +22,13 @@ Demo
 
 <img src='animate.gif' width='350'>
 
+## Initial Design
+
+From design idea to actual working clock!
+
+<img src='ferris wheel mockup 1.jpeg' width='350'>
+<img src='ferris wheel mockup 2.jpeg' width='350'>
+
 ## TODOs:
 
 - [ ] Tests cases
