@@ -30,6 +30,7 @@ From design idea to actual working clock!
 
 ## TODOs:
 
+- [ ] CI/CD for web
 - [ ] Tests cases
 - [ ] Use stream instead of setState for time updating
 - [ ] Optimisation
