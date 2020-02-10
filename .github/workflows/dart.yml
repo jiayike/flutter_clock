@@ -11,7 +11,7 @@ jobs:
       image:  google/dart:latest
       
     env:
-      working_directory: ./ferris_clock
+      working-directory: ./ferris_clock
 
     steps:
     - uses: actions/checkout@v2
