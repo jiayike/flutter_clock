@@ -12,7 +12,7 @@ jobs:
 
     steps:
     - name: Change Directory
-      run: cd ferris_clock
+      run: cd ./flutter_clock/ferris_clock
     - uses: actions/checkout@v2
     - name: Install dependencies
       run: pub get
