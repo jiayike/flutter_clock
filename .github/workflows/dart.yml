@@ -15,12 +15,16 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Flutter Build
     - uses: subosito/flutter-action@v1
+      with:
+        channel: 'master'
     - name: Install dependencies
       run: flutter pub get
       working-directory: ${{env.working-directory}}
 #     - name: Run tests
 #       run: flutter test
+#       working-directory: ${{env.working-directory}}
     - name: Build Web
       run: |
         flutter build web
