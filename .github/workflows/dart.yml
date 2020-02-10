@@ -9,10 +9,11 @@ jobs:
 
     container:
       image:  google/dart:latest
+      
+    env:
+      working_directory: ./ferris_clock
 
     steps:
-    - name: Change Directory
-      run: cd ./flutter_clock/ferris_clock
     - uses: actions/checkout@v2
     - name: Install dependencies
       run: pub get
