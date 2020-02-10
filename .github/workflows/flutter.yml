@@ -5,8 +5,10 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+    
     env:
       working-directory: ./ferris_clock
+    
     steps:
     - uses: actions/checkout@v2
 #     - uses: actions/setup-java@v1
