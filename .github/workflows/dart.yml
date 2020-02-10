@@ -11,6 +11,8 @@ jobs:
       image:  google/dart:latest
 
     steps:
+    - name: Change Directory
+      run: cd ferris_clock
     - uses: actions/checkout@v2
     - name: Install dependencies
       run: pub get
