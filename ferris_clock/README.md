@@ -22,6 +22,10 @@ Demo
 
 <img src='animate.gif' width='350'>
 
+### Web Preview
+
+https://jiayike.github.io/flutter_clock/
+
 ## Initial Design
 
 From design idea to actual working clock!
@@ -30,7 +34,7 @@ From design idea to actual working clock!
 
 ## TODOs:
 
-- [ ] CI/CD for web
+- [x] CI/CD for web
 - [ ] Tests cases
 - [ ] Use stream instead of setState for time updating
 - [ ] Optimisation
