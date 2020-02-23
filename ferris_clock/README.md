@@ -1,3 +1,5 @@
+![Flutter CI](https://github.com/jiayike/flutter_clock/workflows/Flutter%20CI/badge.svg)
+
 # Ferris Clock
 
 First implementation of a Flutter project for the Flutter Clock Challenge [flutter.dev/clock](https://flutter.dev/clock). 
