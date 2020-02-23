@@ -1,6 +1,12 @@
 name: Flutter CI
 
-on: [push]
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - ferris_clock/lib/*
+      - ferris_clock/test/*
 
 jobs:
   build:
