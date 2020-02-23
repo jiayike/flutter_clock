@@ -7,9 +7,9 @@ on:
   push:
     branches:
       - master
-    paths:
-      - ${{env.working-directory}}/lib/*
-      - ${{env.working-directory}}/test/*
+#     paths:
+#       - ${{env.working-directory}}/lib/*
+#       - ${{env.working-directory}}/test/*
 
 jobs:
   build:
