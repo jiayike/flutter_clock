@@ -20,7 +20,9 @@ class DigitalClock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final color = hourColors[now.hour % hourColors.length];
+    final color = hourColors != null && hourColors.length > 0
+        ? hourColors[now.hour % hourColors.length]
+        : null;
     final hour = DateFormat(is24HourFormat ? 'HH' : 'hh').format(now);
     final minute = DateFormat('mm').format(now);
     final second = DateFormat('ss').format(now);
