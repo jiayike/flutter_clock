@@ -8,7 +8,7 @@ const RESOURCES = {
 "/assets/fonts/Alata-Regular.ttf": "03a7f67c33c44897db76fa072725df8d",
 "/assets/AssetManifest.json": "14f9ca605c4f3f86fbb377984b4f8152",
 "/index.html": "4eb742a16c114a08c3a4eae0d8805fd5",
-"/main.dart.js": "5ad48f248f49937fe11ae6262f131c80"
+"/main.dart.js": "a6a464778459146bdf13eabde86f364e"
 };
 
 self.addEventListener('activate', function (event) {
