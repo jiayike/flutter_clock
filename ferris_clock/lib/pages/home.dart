@@ -7,6 +7,7 @@ import 'package:flutter_clock_helper/model.dart';
 
 import '../templates/ferris_clock.dart';
 import '../templates/digital_clock.dart';
+import '../templates/weather_status.dart';
 
 enum _ClockColors {
   background,
@@ -131,7 +132,6 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     final time = DateFormat.Hms().format(DateTime.now());
     final double deviceHeight = MediaQuery.of(context).size.height;
-    // final double deviceWidth = MediaQuery.of(context).size.width;
     final double wheelSize = deviceHeight / 1.5;
 
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
@@ -183,20 +183,13 @@ class _HomeState extends State<Home> {
               Positioned(
                   right: wheelSize / 10,
                   top: deviceHeight / 20,
-                  child: DefaultTextStyle(
-                    style: TextStyle(
-                        color: customTheme[_ClockColors.textColor],
-                        fontFamily: _fontFamily),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Text(_temperature),
-                        Text(_temperatureRange),
-                        Text(_condition),
-                        Text(_location),
-                      ],
-                    ),
-                  ))
+                  child: WeatherStatus(
+                      temperature: _temperature,
+                      temperatureRange: _temperatureRange,
+                      condition: _condition,
+                      location: _location,
+                      color: customTheme[_ClockColors.textColor],
+                      fontFamily: _fontFamily))
             ])));
   }
 }
