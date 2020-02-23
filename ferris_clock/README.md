@@ -39,3 +39,4 @@ From design idea to actual working clock!
 - [ ] Use stream instead of setState for time updating
 - [ ] Optimisation
 - [ ] Extract variables to separate file
+- [ ] Weather background
