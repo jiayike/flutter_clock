@@ -1,19 +1,19 @@
 name: Flutter CI
 
+env:
+  working-directory: ferris_clock
+
 on:
   push:
     branches:
       - master
     paths:
-      - ferris_clock/lib/*
-      - ferris_clock/test/*
+      - ${{env.working-directory}}/lib/*
+      - ${{env.working-directory}}/test/*
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    
-    env:
-      working-directory: ferris_clock
     
     steps:
     - uses: actions/checkout@v2
